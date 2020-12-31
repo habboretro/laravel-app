@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
+use App\Http\Controllers\Settings;
+use App\Http\Controllers\HabboImaging;
+use App\Http\Controllers\News;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', Controllers\IndexController::class)
+    ->middleware(['guest', 'findretros.redirect'])
+    ->name('index');
+
+Route::get('/habbo-imaging/avatarimage', HabboImaging\AvatarController::class)
+    ->name('habbo-imaging.avatar');
+
+Route::get('/news', News\IndexController::class)
+    ->name('news.index');
+
+Route::get('/news/{news:slug}', News\ShowController::class)
+    ->name('news.show');
+
+Route::get('/highscores', Controllers\HighScoreController::class)
+    ->name('highscores');
+
+Route::get('/staff', Controllers\StaffController::class)
+    ->name('staff');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/me', Controllers\MeController::class)
+        ->name('me');
+
+    Route::get('/game', Controllers\GameController::class)
+        ->name('game');
+
+    Route::get('/settings/email', Settings\EmailController::class)
+        ->name('settings.email');
+
+    Route::get('/settings/password', Settings\PasswordController::class)
+        ->name('settings.password');
+});
