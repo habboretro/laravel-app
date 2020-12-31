@@ -18,7 +18,7 @@ Vue.use(VueMeta)
 
 new Vue({
   metaInfo: {
-    titleTemplate: (title) => title ? `${title}` : 'Foo Bar',
+    titleTemplate: (title) => title ? `${title}` : '',
     meta: [],
   },
   render: h => h(InertiaApp, {

@@ -69,9 +69,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.drop-shadow {
-  -webkit-filter: drop-shadow(2px 1px 0 #fff) drop-shadow(-2px 1px 0 #fff)
-    drop-shadow(0 -2px 0 #fff);
-}
-</style>

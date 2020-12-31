@@ -122,17 +122,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/me.vue?vue&type=style&index=0&id=0f7fa8c1&scoped=true&lang=css& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".drop-shadow[data-v-0f7fa8c1] {\n  -webkit-filter: drop-shadow(2px 1px 0 #fff) drop-shadow(-2px 1px 0 #fff)\n    drop-shadow(0 -2px 0 #fff);\n}\n", ""]);
-
-// exports
-
+throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(74:6) Unknown word\n\n \u001b[90m 72 | \u001b[39m\n \u001b[90m 73 | \u001b[39m// \u001b[33m.drop-shadow\u001b[39m \u001b[33m{\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 74 | \u001b[39m//   -webkit-filter\u001b[33m:\u001b[39m \u001b[36mdrop-shadow\u001b[39m\u001b[36m(2px 1px 0 #fff)\u001b[39m \u001b[36mdrop-shadow\u001b[39m\u001b[36m(-2px 1px 0 #fff)\u001b[39m\n \u001b[90m    | \u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 75 | \u001b[39m//     \u001b[36mdrop-shadow\u001b[39m\u001b[36m(0 -2px 0 #fff)\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 76 | \u001b[39m// \u001b[33m}\u001b[39m\n");
 
 /***/ }),
 
