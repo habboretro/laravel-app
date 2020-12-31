@@ -44,7 +44,7 @@ class FindRetrosService
         $cacheKey = sprintf(self::FIND_RETROS_CACHE_KEY, request()->ip());
         if (request()->ip() === '127.0.0.1') return true;
         if (request()->has('novote')) return true;
-        if (Cache::exists($cacheKey)) return true;
+        if (Cache::has($cacheKey)) return true;
         $uri = sprintf(self::FIND_RETROS_VERIFY_URI, config('habbo.findretros.api'), config('habbo.findretros.name'), request()->ip());
         $request = $this->client->get($uri);
         $response = $request->getBody()->getContents();
