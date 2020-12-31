@@ -18,7 +18,7 @@ use App\Http\Controllers\News;
 */
 
 Route::get('/', Controllers\IndexController::class)
-    ->middleware(['guest', 'findretros.redirect'])
+    ->middleware('guest')
     ->name('index');
 
 Route::get('/habbo-imaging/avatarimage', HabboImaging\AvatarController::class)
@@ -38,9 +38,11 @@ Route::get('/staff', Controllers\StaffController::class)
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', Controllers\MeController::class)
+        ->middleware('findretros.redirect')
         ->name('me');
 
     Route::get('/game', Controllers\GameController::class)
+        ->middleware('findretros.redirect')
         ->name('game');
 
     Route::get('/settings/email', Settings\EmailController::class)
