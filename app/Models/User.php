@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,6 +49,13 @@ class User extends Authenticatable
     public $timestamps = false;
 
     /**
+     * Indicated if the model should have a rememberToken.
+     * 
+     * @var bool
+     */
+    protected $rememberTokenName = false;
+
+    /**
      * Permissions that belongs to the user.
      * 
      * @var \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -75,5 +83,25 @@ class User extends Authenticatable
     public function settings(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(UserSettings::class);
+    }
+
+    /**
+     * Retrieve the email for password reset.
+     * 
+     * @return string
+     */
+    public function getEmailForPasswordReset(): string
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Retrieve the email for notifications.
+     * 
+     * @return string
+     */
+    public function routeNotificationForMail($notification): string
+    {
+        return $this->mail;
     }
 }
