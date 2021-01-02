@@ -5,7 +5,7 @@ use App\Http\Controllers;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\HabboImaging;
 use App\Http\Controllers\News;
-use App\Http\Controllers\Paypal;
+use App\Http\Controllers\PayPal;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::get('/highscores', Controllers\HighScoreController::class)
 Route::get('/staff', Controllers\StaffController::class)
     ->name('staff');
 
-Route::post('/paypal/checkout/notify', Paypal\NotifyController::class)
+Route::post('/paypal/checkout/notify', PayPal\NotifyController::class)
     ->name('paypal.notify');
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -59,10 +59,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/settings/password', Settings\PasswordController::class)
         ->name('settings.password');
 
-    Route::get('/paypal/checkout/success', Paypal\SucccessController::class)
+    Route::get('/paypal/checkout/success', PayPal\SucccessController::class)
         ->name('paypal.success');
 
-    Route::get('/paypal/checkout/{amount}', Paypal\CheckoutController::class)
+    Route::get('/paypal/checkout/{amount}', PayPal\CheckoutController::class)
         ->name('paypal.checkout');
 });
 
