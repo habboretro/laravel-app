@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/*.js
+/public/js/chunks/
 /public/js/app.js
 /public/js/app.js.LICENSE.txt
 /public/storage
