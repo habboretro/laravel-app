@@ -1,30 +1,13 @@
 <?php
 
-/**
- * PayPal Setting & API Credentials
- * Created by Raza Mehdi <srmk@outlook.com>.
- */
-
 return [
-    'mode'    => 'sandbox',
-    'sandbox' => [
-        'username'    => env('PAYPAL_SANDBOX_API_USERNAME', ''),
-        'password'    => env('PAYPAL_SANDBOX_API_PASSWORD', ''),
-        'secret'      => env('PAYPAL_SANDBOX_API_SECRET', ''),
-        'certificate' => env('PAYPAL_SANDBOX_API_CERTIFICATE', ''),
-        'app_id'      => 'APP-80W284485P519543T',
+    'client_id' => env('PAYPAL_CLIENT_ID', ''),
+    'secret' => env('PAYPAL_SECRET', ''),
+    'settings' => [
+        'mode' => env('PAYPAL_MODE', 'sandbox'),
+        'http.ConnectionTimeOut' => 30,
+        'log.LogEnabled' => true,
+        'log.FileName' => storage_path('/logs/paypal.log'),
+        'log.LogLevel' => 'ERROR'
     ],
-    'live' => [
-        'username'    => env('PAYPAL_LIVE_API_USERNAME', ''),
-        'password'    => env('PAYPAL_LIVE_API_PASSWORD', ''),
-        'secret'      => env('PAYPAL_LIVE_API_SECRET', ''),
-        'certificate' => env('PAYPAL_LIVE_API_CERTIFICATE', ''),
-        'app_id'      => '',
-    ],
-
-    'payment_action' => 'Sale',
-    'currency'       => 'GBP',
-    'notify_url'     => 'https://pabbo-hotel.com/paypal/checkout/notify',
-    'locale'         => 'en_GB',
-    'invoice_prefix' => '',
 ];

@@ -86,16 +86,6 @@ class User extends Authenticatable
     }
 
     /**
-     * The user invoices.
-     * 
-     * @var \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function invoices(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Invoice::class);
-    }
-
-    /**
      * Retrieve the email for password reset.
      * 
      * @return string

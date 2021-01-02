@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\PayPal;
 
-use App\Models\Invoice;
+use PayPal\Api\Item;
+use PayPal\Api\Payer;
+use PayPal\Api\Amount;
+use PayPal\Api\Payment;
+use PayPal\Api\ItemList;
+use PayPal\Api\Transaction;
+use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
+use PayPal\Api\RedirectUrls;
 use App\Http\Controllers\Controller;
+use PayPal\Auth\OAuthTokenCredential;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use Srmklive\PayPal\Services\ExpressCheckout;
+use PayPal\Exception\PayPalConnectionException;
 
 class CheckoutController extends Controller
 {
@@ -18,31 +27,63 @@ class CheckoutController extends Controller
      */
     public function __invoke(Request $request, string $amount)
     {
-        $provider = new ExpressCheckout;
-        $invoiceId = Invoice::count() + 1;
+        $apiContext = new ApiContext(new OAuthTokenCredential(config('paypal.client_id'), config('paypal.secret')));
+        $apiContext->setConfig(config('paypal.settings'));
 
         if (!in_array($amount, [3, 5, 7, 11, 12, 15, 20, 25])) {
             return Redirect::route('store')->with(['error' => 'You cannot topup this amount.']);
         }
 
-        $invoice = $request->user()->invoices()->create([
-            'title' => sprintf('Order #%s Invoice', $invoiceId),
-            'price' => $amount,
-        ]);
+        $payer = (new Payer)
+            ->setPaymentMethod('paypal');
 
-        $response = $provider->setExpressCheckout([
-            'items' => [['name' => sprintf('%s Topup (£%s)', config('habbo.site.shortname'), $amount), 'price' => $invoice->price, 'qty' => 1]],
-            'return_url' => route('paypal.success'),
-            'invoice_id' => sprintf('%s_%s', config('paypal.invoice_prefix'), $invoiceId),
-            'invoice_description' => $invoice->title,
-            'cancel_url' => route('store'),
-            'total' => $invoice->price,
-        ], false);
+        $item = (new Item)
+            ->setName('Topup Balance')
+            ->setCurrency('GBP')
+            ->setPrice($amount)
+            ->setQuantity(1);
 
-        if (!$response['paypal_link']) {
-            return Redirect::route('store')->with(['error' => 'Something went wrong with your purchase.']);
+        $itemList = (new ItemList)
+            ->setItems([$item]);
+
+        $amount = (new Amount)
+            ->setCurrency('GBP')
+            ->setTotal($amount);
+
+        $redirectUrls = (new RedirectUrls)
+            ->setReturnUrl(route('paypal.verify'))
+            ->setCancelUrl(route('store'));
+
+        $transaction = (new Transaction)
+            ->setAmount($amount)
+            ->setItemList($itemList)
+            ->setDescription(sprintf('%s account balance topup', config('habbo.site.shortname')));
+
+        $payment = (new Payment)
+            ->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions([$transaction]);
+
+        try {
+            $payment->create($apiContext);
+        } catch (PayPalConnectionException $e) {
+            // 
         }
 
-        return redirect($response['paypal_link']);
+        foreach ($payment->getLinks() as $link) {
+            if ($link->getRel() == 'approval_url') {
+                $redirect_url = $link->getHref();
+                break;
+            }
+        }
+
+        Session::put('paypal_payment_id', $payment->getId());
+        if (isset($redirect_url)) {
+            return Redirect::away($redirect_url);
+        }
+
+        Session::put('error', 'Unknown error occurred');
+        return Redirect::route('store');
     }
 }

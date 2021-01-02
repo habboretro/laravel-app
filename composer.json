@@ -17,7 +17,7 @@
         "laravel/jetstream": "^1.6",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "srmklive/paypal": "^1.0",
+        "paypal/rest-api-sdk-php": "^1.14",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
