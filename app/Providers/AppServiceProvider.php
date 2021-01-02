@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Services\HabboService;
 use App\Services\FindRetrosService;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,5 +35,10 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share('shortname', fn () => config('habbo.site.shortname'));
         Inertia::share('sitename', fn () => config('habbo.site.sitename'));
         Inertia::share('socials', fn () => config('habbo.socials'));
+        Inertia::share('csrf_token', fn (Request $request) => $request->session()->token());
+        Inertia::share('flash', fn () => [
+            'success' => Session::get('success'),
+            'error' => Session::get('error'),
+        ]);
     }
 }

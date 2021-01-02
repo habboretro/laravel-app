@@ -35,7 +35,7 @@
               </button>
             </x-slot>
             <x-slot name="content">
-              <x-jet-dropdown-link href="{{ route('index') }}">Account Settings</x-jet-dropdown-link>
+              <x-jet-dropdown-link href="{{ route('settings.email') }}">Account Settings</x-jet-dropdown-link>
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button class="w-full text-left block px-4 py-2 text-sm leading-5 text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:bg-red-600 transition duration-150 ease-in-out focus:outline-none">

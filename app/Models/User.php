@@ -34,11 +34,11 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'account_created', 'account_day_of_birth', 'home_room',
-        'extra_rank', 'real_name', 'mail',
+        'extra_rank', 'real_name', 'two_factor_enabled',
         'mail_verified', 'password', 'auth_ticket',
         'ip_register', 'ip_current', 'machine_id',
         'secret_key', 'pixels', 'points',
-        'pincode', 'two_factor_enabled',
+        'pincode',
     ];
 
     /**

@@ -51,3 +51,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/settings/password', Settings\PasswordController::class)
         ->name('settings.password');
 });
+
+Route::prefix('api')->group(function () {
+    Route::put('/update-email', Settings\UpdateEmailController::class)->middleware('auth:sanctum');
+    Route::put('/update-password', Settings\UpdatePasswordController::class)->middleware('auth');
+});

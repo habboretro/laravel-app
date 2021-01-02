@@ -17,6 +17,6 @@ class PasswordController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('settings.password');
+        return Inertia::render('settings/password');
     }
 }

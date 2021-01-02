@@ -6,9 +6,3 @@
     <portal-target class="relative z-50 text-gray-900" name="modal" multiple />
   </main>
 </template>
-
-<script>
-export default {
-  //
-};
-</script>

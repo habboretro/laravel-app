@@ -17,6 +17,6 @@ class EmailController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('settings.email');
+        return Inertia::render('settings/email');
     }
 }
