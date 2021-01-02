@@ -24,7 +24,7 @@ return [
 
     'payment_action' => 'Sale',
     'currency'       => 'GBP',
-    'notify_url'     => url('/paypal/checkout/notify'),
+    'notify_url'     => 'https://pabbo-hotel.com/paypal/checkout/notify',
     'locale'         => 'en_GB',
     'invoice_prefix' => '',
 ];
