@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Services\RconService;
 use App\Services\HabboService;
 use App\Services\FindRetrosService;
 use Illuminate\Support\Facades\Session;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(HabboService::class, fn () => new HabboService);
         $this->app->bind(FindRetrosService::class, fn () => new FindRetrosService);
+        $this->app->bind(RconService::class, fn () => new RconService);
         Inertia::share('user', fn (Request $request) => $request->user());
         Inertia::share('domain', fn () => config('habbo.site.domain'));
         Inertia::share('shortname', fn () => config('habbo.site.shortname'));
