@@ -12,14 +12,14 @@
           <x-jet-dropdown-link href="{{ route('news.index') }}">News</x-jet-dropdown-link>
           <x-jet-dropdown-link href="{{ route('highscores') }}">Highscores</x-jet-dropdown-link>
           <x-jet-dropdown-link href="{{ route('staff') }}">Staff</x-jet-dropdown-link>
-          <x-jet-dropdown-link href="{{ route('index') }}">Store</x-jet-dropdown-link>
+          <x-jet-dropdown-link href="{{ route('store') }}">Store</x-jet-dropdown-link>
         </x-slot>
       </x-jet-dropdown>
       <a href="{{ is_null(request()->user()) ? route('index') : route('me') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">Homepage</a>
       <a href="{{ route('news.index') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">News</a>
       <a href="{{ route('highscores') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">Highscores</a>
       <a href="{{ route('staff') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">Staff</a>
-      <a href="{{ route('index') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">Store</a>
+      <a href="{{ route('store') }}" class="hidden text-sm hover:text-green-500 mr-8 md:block">Store</a>
       @guest
         <a href="{{ route('register') }}" class="ml-auto">
           <x-jet-button>Register</x-jet-button>
