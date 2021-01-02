@@ -68,7 +68,9 @@ class CheckoutController extends Controller
         try {
             $payment->create($apiContext);
         } catch (PayPalConnectionException $e) {
-            // 
+            echo $e->getCode();
+            echo $e->getData();
+            die($e);
         }
 
         foreach ($payment->getLinks() as $link) {

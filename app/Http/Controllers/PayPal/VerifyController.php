@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use PayPal\Auth\OAuthTokenCredential;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use PayPal\Exception\PayPalConnectionException;
 
 class VerifyController extends Controller
 {
@@ -33,7 +34,14 @@ class VerifyController extends Controller
         $payment = Payment::get($paymentId, $apiContext);
         $execution = new PaymentExecution();
         $execution->setPayerId($request->PayerID);
-        $result = $payment->execute($execution, $apiContext);
+
+        try {
+            $result = $payment->execute($execution, $apiContext);
+        } catch (PayPalConnectionException $e) {
+            echo $e->getCode();
+            echo $e->getData();
+            die($e);
+        }
 
         if ($result->getState() == 'approved') {
             $amount = (int) $result->getTransactions()[0]->amount->total;
