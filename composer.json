@@ -13,10 +13,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.2.4",
-        "laravel/framework": "^8.12",
+        "laravel/framework": "^8.20.1",
         "laravel/jetstream": "^1.6",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "srmklive/paypal": "^1.0",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'rank', 'credits', 'online',
         'auth_ticket', 'ip_register', 'ip_current',
         'machine_id', 'home_room', 'secret_key',
-        'pincode', 'extra_rank',
+        'pincode', 'extra_rank', 'balance',
     ];
 
     /**
@@ -83,6 +83,16 @@ class User extends Authenticatable
     public function settings(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(UserSettings::class);
+    }
+
+    /**
+     * The user invoices.
+     * 
+     * @var \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invoices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Invoice::class);
     }
 
     /**

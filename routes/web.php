@@ -5,6 +5,7 @@ use App\Http\Controllers;
 use App\Http\Controllers\Settings;
 use App\Http\Controllers\HabboImaging;
 use App\Http\Controllers\News;
+use App\Http\Controllers\Paypal;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::get('/highscores', Controllers\HighScoreController::class)
 Route::get('/staff', Controllers\StaffController::class)
     ->name('staff');
 
+Route::post('/paypal/checkout/notify', Paypal\NotifyController::class)
+    ->name('paypal.notify');
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/me', Controllers\MeController::class)
         ->middleware('findretros.redirect')
@@ -45,11 +49,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->middleware('findretros.redirect')
         ->name('game');
 
+    Route::get('/store', Controllers\StoreController::class)
+        ->middleware('findretros.redirect')
+        ->name('store');
+
     Route::get('/settings/email', Settings\EmailController::class)
         ->name('settings.email');
 
     Route::get('/settings/password', Settings\PasswordController::class)
         ->name('settings.password');
+
+    Route::get('/paypal/checkout/success', Paypal\SucccessController::class)
+        ->name('paypal.success');
+
+    Route::get('/paypal/checkout/{amount}', Paypal\CheckoutController::class)
+        ->name('paypal.checkout');
 });
 
 Route::prefix('api')->group(function () {
