@@ -2,8 +2,11 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Product extends Resource
@@ -39,8 +42,25 @@ class Product extends Resource
      */
     public function fields(Request $request)
     {
+        $types = [0 => 'Duckets', 5 => 'Diamonds'];
+
         return [
-            ID::make(__('ID'), 'id')->sortable(),
+            ID::make()->sortable(),
+
+            Number::make('Price')
+                ->rules('required'),
+
+            Text::make('Type', 'type', fn () => $types[$this->type])
+                ->hideWhenCreating()
+                ->hideWhenUpdating(),
+
+            Select::make('Type')
+                ->onlyOnForms()
+                ->rules('required')
+                ->options($types),
+
+            Number::make('Reward')
+                ->rules('required')
         ];
     }
 
