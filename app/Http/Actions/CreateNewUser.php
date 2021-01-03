@@ -4,9 +4,12 @@ namespace App\Http\Actions;
 
 use App\Models\User;
 use Illuminate\Support\Carbon;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -21,6 +24,15 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $users = User::where(fn (Builder $query) => $query->where('ip_register', request()->ip())->orWhere('ip_current', request()->ip()))
+            ->count();
+
+        if ($users > 3) {
+            throw ValidationException::withMessages([
+                'username' => ['You can only have a maximum of 3 accounts.'],
+            ]);
+        }
+
         Validator::make($input, [
             'username' => ['required', 'string', 'alpha_dash', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,mail'],
