@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // 
     }
 
     /**
@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(HabboService::class, fn () => new HabboService);
         $this->app->bind(FindRetrosService::class, fn () => new FindRetrosService);
         $this->app->bind(RconService::class, fn () => new RconService);
+
         Inertia::share('user', fn (Request $request) => $request->user());
         Inertia::share('domain', fn () => config('habbo.site.domain'));
         Inertia::share('shortname', fn () => config('habbo.site.shortname'));

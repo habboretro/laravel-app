@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Illuminate\Support\Carbon;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
@@ -66,30 +67,54 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            // DateTime::make('Date Created', 'account_created'),
+            BelongsTo::make('Rank', 'permissions', Permission::class)
+                ->rules('required'),
 
-            // DateTime::make('Last Login', 'last_login'),
+            Number::make('Credits')
+                ->rules('required')
+                ->default(config('habbo.default.credits')),
 
-            Text::make('Motto'),
+            Number::make('Balance')
+                ->rules('required')
+                ->default(0),
 
-            Text::make('Look'),
+            Text::make('Motto')
+                ->hideFromIndex()
+                ->default(config('habbo.default.motto')),
 
-            Select::make('Gender')
-                ->options(['M', 'F']),
-
-            // BelongsTo::make('Rank', 'id', Permission::class),
-
-            Number::make('Credits'),
-
-            Boolean::make('Online'),
-
-            Text::make('Ip Register'),
-
-            Text::make('Machine Id'),
+            Text::make('Look')
+                ->hideFromIndex()
+                ->default(config('habbo.default.look')),
 
             // BelongsTo::make('Home Room', 'id', Room::class),
 
-            Number::make('Balance'),
+            Boolean::make('Online')
+                ->rules('required')
+                ->trueValue('1')
+                ->falseValue('0'),
+
+            Text::make('Ip Register')
+                ->rules('required')
+                ->hideFromIndex()
+                ->default('127.0.0.1'),
+
+            Text::make('Ip Current')
+                ->rules('required')
+                ->hideFromIndex()
+                ->default('127.0.0.1'),
+
+            Text::make('Machine Id')
+                ->rules('required')
+                ->hideFromIndex()
+                ->default('-'),
+
+            Text::make('Date Created', 'account_created')
+                ->hideFromIndex()
+                ->default(Carbon::now()->timestamp),
+
+            Text::make('Last Login')
+                ->hideFromIndex()
+                ->default(Carbon::now()->timestamp),
         ];
     }
 
