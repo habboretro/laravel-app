@@ -23,8 +23,7 @@ class BannedMiddleware
             ->where('ip', $request->ip())
             ->count();
 
-        $accounts = Ban::where('type', 'account')
-            ->where('user_id', $request->user()->id ?? null)
+        $accounts = Ban::where('user_id', $request->user()->id ?? null)
             ->count();
 
         if ($ips > 0 || $accounts > 0) {

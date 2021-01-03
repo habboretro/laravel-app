@@ -21,8 +21,7 @@ class BannedController extends Controller
             ->where('ip', $request->ip())
             ->first();
 
-        $accountBan = Ban::where('type', 'account')
-            ->where('user_id', $request->user()->id ?? null)
+        $accountBan = Ban::where('user_id', $request->user()->id ?? null)
             ->first();
 
         return Inertia::render('banned', [
