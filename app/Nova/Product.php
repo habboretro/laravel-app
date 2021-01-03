@@ -60,7 +60,7 @@ class Product extends Resource
                 ->options($types),
 
             Number::make('Reward')
-                ->rules('required')
+                ->rules('required'),
         ];
     }
 
