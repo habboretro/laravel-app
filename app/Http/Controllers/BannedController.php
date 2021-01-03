@@ -17,10 +17,16 @@ class BannedController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $ipBan = Ban::where('type', 'ip')
+            ->where('ip', $request->ip())
+            ->first();
+
+        $accountBan = Ban::where('type', 'account')
+            ->where('user_id', $request->user()->id ?? null)
+            ->first();
+
         return Inertia::render('banned', [
-            'ban' => Ban::where(fn (Builder $query) => $query->where(['type' => 'ip', 'ip' => $request->ip()])->orWhere(['type' => 'account', 'user_id' => $request->user()->id ?? null])->orWhere(['type' => 'machine', 'machine_id' => $request->user()->machine_id ?? null]))
-                ->orderBy('timestamp', 'DESC')
-                ->first(),
+            'ban' => $ipBan ?: $accountBan,
 
             'chatlogs' => $request->user()
                 ->chatlogs()

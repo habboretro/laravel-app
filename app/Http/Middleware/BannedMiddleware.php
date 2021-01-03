@@ -19,10 +19,15 @@ class BannedMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $bans = Ban::where(fn (Builder $query) => $query->where(['type' => 'ip', 'ip' => $request->ip()])->orWhere(['type' => 'account', 'user_id' => $request->user()->id ?? null])->orWhere(['type' => 'machine', 'machine_id' => $request->user()->machine_id ?? null]))
+        $ips = Ban::where('type', 'ip')
+            ->where('ip', $request->ip())
             ->count();
 
-        if ($bans > 0) {
+        $accounts = Ban::where('type', 'account')
+            ->where('user_id', $request->user()->id ?? null)
+            ->count();
+
+        if ($ips > 0 || $accounts > 0) {
             return Redirect::route('banned');
         }
 
