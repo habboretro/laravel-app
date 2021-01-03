@@ -59,8 +59,7 @@ class Permission extends Resource
 
             Text::make('Prefix'),
 
-            Color::make('Prefix Color')
-                ->compact(),
+            Color::make('Prefix Color'),
 
             Select::make('cmd_about')
                 ->options(['0', '1'])
@@ -228,10 +227,6 @@ class Permission extends Resource
 
             Select::make('cmd_kickall')
                 ->options(['0', '1', '2'])
-                ->hideFromIndex(),
-
-            Select::make('cmd_softkick')
-                ->options(['0', '1'])
                 ->hideFromIndex(),
 
             Select::make('cmd_massbadge')
@@ -557,10 +552,6 @@ class Permission extends Resource
                 ->hideFromIndex(),
 
             Select::make('acc_hide_ip')
-                ->options(['0', '1'])
-                ->hideFromIndex(),
-
-            Select::make('acc_hide_mail')
                 ->options(['0', '1'])
                 ->hideFromIndex(),
 

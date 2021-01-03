@@ -42,16 +42,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        // 'account_created' => 'datetime',
-        // 'last_login' => 'datetime',
-    ];
-
-    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool

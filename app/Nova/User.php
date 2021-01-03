@@ -66,9 +66,9 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            DateTime::make('Date Created', 'account_created'),
+            // DateTime::make('Date Created', 'account_created'),
 
-            DateTime::make('Last Login', 'last_login'),
+            // DateTime::make('Last Login', 'last_login'),
 
             Text::make('Motto'),
 
