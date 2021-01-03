@@ -2,8 +2,13 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Textarea;
+use Froala\NovaFroalaField\Froala;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class News extends Resource
@@ -20,7 +25,7 @@ class News extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -28,7 +33,8 @@ class News extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'slug', 'title',
+        'short_story', 'full_story',
     ];
 
     /**
@@ -40,7 +46,30 @@ class News extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
+            ID::make()->sortable(),
+
+            Text::make('Slug')
+                ->sortable()
+                ->rules('required', 'alpha_dash', 'max:254')
+                ->creationRules('unique:news,slug')
+                ->updateRules('unique:news,slug,{{resourceId}}'),
+
+            Text::make('Title')
+                ->sortable()
+                ->rules('required', 'max:254'),
+
+            Textarea::make('Short Story')
+                ->hideFromIndex()
+                ->rules('required', 'max:500'),
+
+            Froala::make('Full Story')
+                ->withFiles('public'),
+
+            Image::make('Image')
+                ->rules('required')
+                ->disk('public'),
+
+            BelongsTo::make('User'),
         ];
     }
 

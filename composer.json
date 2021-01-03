@@ -10,16 +10,18 @@
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
+        "froala/nova-froala-field": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.2.4",
         "laravel/framework": "^8.20.1",
         "laravel/jetstream": "^1.6",
+        "laravel/nova": "*",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "paypal/rest-api-sdk-php": "^1.14",
         "tightenco/ziggy": "^1.0",
-        "laravel/nova": "*"
+        "waynestate/nova-ckeditor4-field": "^0.7.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
