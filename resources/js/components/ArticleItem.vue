@@ -3,7 +3,7 @@
     <inertia-link :href="`/news/${item.slug}`" class="block">
       <jet-card>
         <div class="overflow-hidden h-32">
-          <img :src="`/${item.image}`" :alt="item.slug" class="object-cover min-w-full min-h-full" />
+          <img :src="`/storage/${item.image}`" :alt="item.slug" class="object-cover min-w-full min-h-full" />
         </div>
         <div class="p-4">
           <p class="text-green-500 font-bold mb-4">{{ item.title }}</p>
