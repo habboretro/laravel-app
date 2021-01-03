@@ -71,6 +71,11 @@ export default {
       this.formData.password_confirmation = ''
       this.loading = false
     }
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Update your password`,
+    }
+  },
 }
 </script>

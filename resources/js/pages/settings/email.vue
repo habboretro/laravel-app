@@ -64,7 +64,12 @@ export default {
       this.formData.current_password = ''
       this.loading = false
     }
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Update your Email`,
+    }
+  },
 }
 </script>
 

@@ -38,5 +38,10 @@ export default {
       return moment.unix(date).format('MM/DD/YYYY H:m')
     }
   },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - You've been banned`,
+    }
+  },
 }
 </script>

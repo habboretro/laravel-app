@@ -48,6 +48,11 @@ export default {
       null,
       null
     );
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Client`,
+    }
+  },
 };
 </script>

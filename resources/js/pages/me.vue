@@ -65,7 +65,12 @@ export default {
     socials: Array,
     shortname: String,
     articles: Array
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - ${this.user.username}`,
+    }
+  },
 };
 </script>
 

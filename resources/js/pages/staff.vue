@@ -37,6 +37,11 @@ export default {
   },
   props: {
     users: Array
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Staff`,
+    }
+  },
 };
 </script>

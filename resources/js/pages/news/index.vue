@@ -18,6 +18,11 @@ export default {
   },
   props: {
     articles: Object
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - News Articles`,
+    }
+  },
 };
 </script>

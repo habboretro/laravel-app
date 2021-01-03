@@ -29,6 +29,11 @@ export default {
     credits: Array,
     achievements: Array,
     respects: Array
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Highscores`,
+    }
+  },
 };
 </script>

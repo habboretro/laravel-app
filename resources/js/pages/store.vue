@@ -63,6 +63,11 @@ export default {
     products: Array,
     user: Object
   },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - Store`,
+    }
+  },
   data() {
     return {
       loading: false,

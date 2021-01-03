@@ -49,6 +49,11 @@ export default {
     formatDate(date) {
       return moment(date).format('MMMM d, YYYY');
     }
-  }
+  },
+  metaInfo () {
+    return {
+      title: `${this.$page.sitename} - ${this.article.title}`,
+    }
+  },
 };
 </script>
