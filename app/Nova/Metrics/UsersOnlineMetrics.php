@@ -27,9 +27,7 @@ class UsersOnlineMetrics extends Value
     public function calculate(NovaRequest $request)
     {
         return $this->result(
-            User::where('rank', '<', 3)
-                ->where('online', 1)
-                ->count()
+            User::where('rank', '<', 3)->where('online', '1')->count()
         );
     }
 
@@ -62,6 +60,6 @@ class UsersOnlineMetrics extends Value
      */
     public function uriKey()
     {
-        return 'new-users-metrics';
+        return 'users-online-metrics';
     }
 }

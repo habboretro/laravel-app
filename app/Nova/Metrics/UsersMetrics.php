@@ -58,6 +58,6 @@ class UsersMetrics extends Value
      */
     public function uriKey()
     {
-        return 'new-users-metrics';
+        return 'users-metrics';
     }
 }
