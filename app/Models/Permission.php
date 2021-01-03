@@ -15,7 +15,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        'rank', 'badge', 'level',
+        'rank_name', 'badge', 'level',
         'room_effect', 'prefix', 'prefix_color',
     ];
 
