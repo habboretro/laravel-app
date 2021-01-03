@@ -36,7 +36,7 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'username', 'email',
+        'id', 'username', 'mail',
     ];
 
     /**
