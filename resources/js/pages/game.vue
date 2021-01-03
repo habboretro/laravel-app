@@ -6,7 +6,8 @@
         <div class="md:pl-24">
           <p class="text-4xl mb-4">You're nearly in {{ $page.shortname }}!</p>
           <p class="mb-2">Click the blue button below, to download our client to play from your desktop!</p>
-          <p class="mb-4">Click the green button below, then click 'run Flash' when prompted to. See you in the Hotel!</p>
+          <p class="mb-2">Click the green button below, then click 'run Flash' when prompted to. See you in the Hotel!</p>
+          <p class="text-sm mb-4">Still can't get on? Follow the instructions by <a href="https://support.google.com/chrome/answer/6258784?co=GENIE.Platform%3DDesktop&hl=en" target="_blank" rel="noopener noreferrer" class="font-bold underline">clicking here</a></p>
           <div class="flex justify-end">
             <a href="" target="_blank" rel="noopener noreferrer" class="block mr-4">
               <jet-button class="bg-blue-500 hover:bg-blue-600 active:bg-blue-600 focus:border-blue-600">Download Client</jet-button>
