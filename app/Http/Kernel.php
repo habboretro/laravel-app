@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'findretros.redirect' => \App\Http\Middleware\FindRetrosRedirect::class,
+        'banned' => \App\Http\Middleware\BannedMiddleware::class
     ];
 }

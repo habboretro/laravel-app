@@ -86,6 +86,26 @@ class User extends Authenticatable
     }
 
     /**
+     * User bans.
+     * 
+     * @var \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bans(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Ban::class);
+    }
+
+    /**
+     * The user chatlogs.
+     * 
+     * @var \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function chatlogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ChatlogRoom::class, 'user_from_id', 'id');
+    }
+
+    /**
      * Retrieve the email for password reset.
      * 
      * @return string

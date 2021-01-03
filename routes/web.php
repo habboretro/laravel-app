@@ -38,28 +38,35 @@ Route::get('/staff', Controllers\StaffController::class)
     ->name('staff');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/banned', Controllers\BannedController::class)
+        ->name('banned');
+
     Route::get('/me', Controllers\MeController::class)
-        ->middleware('findretros.redirect')
+        ->middleware(['banned', 'findretros.redirect'])
         ->name('me');
 
     Route::get('/game', Controllers\GameController::class)
-        ->middleware('findretros.redirect')
+        ->middleware(['banned', 'findretros.redirect'])
         ->name('game');
 
     Route::get('/store', Controllers\StoreController::class)
-        ->middleware('findretros.redirect')
+        ->middleware(['banned', 'findretros.redirect'])
         ->name('store');
 
     Route::get('/settings/email', Settings\EmailController::class)
+        ->middleware('banned')
         ->name('settings.email');
 
     Route::get('/settings/password', Settings\PasswordController::class)
+        ->middleware('banned')
         ->name('settings.password');
 
     Route::get('/paypal/checkout/verify', PayPal\VerifyController::class)
+        ->middleware('banned')
         ->name('paypal.verify');
 
     Route::get('/paypal/checkout/{amount}', PayPal\CheckoutController::class)
+        ->middleware('banned')
         ->name('paypal.checkout');
 });
 
