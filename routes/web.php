@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
-use App\Http\Controllers\Settings;
-use App\Http\Controllers\HabboImaging;
+use App\Http\Controllers\Box;
 use App\Http\Controllers\News;
 use App\Http\Controllers\PayPal;
+use App\Http\Controllers\Settings;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HabboImaging;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,9 @@ Route::prefix('api')->group(function () {
     Route::post('/purchase/{product}', Controllers\PurchaseProductController::class)->middleware('auth:sanctum');
     Route::put('/update-email', Settings\UpdateEmailController::class)->middleware('auth:sanctum');
     Route::put('/update-password', Settings\UpdatePasswordController::class)->middleware('auth');
+    Route::prefix('boxes')->middleware('auth:sanctum')->group(function () {
+        Route::get('/', Box\IndexController::class);
+        Route::get('/{box}', Box\ShowController::class);
+        Route::post('/{box}', Box\PaymentController::class);
+    });
 });

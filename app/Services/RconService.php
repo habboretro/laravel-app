@@ -9,21 +9,21 @@ class RconService
 {
     /**
      * Socket creation
-     * 
+     *
      * @var Socket resource
      */
     protected $socket;
 
     /**
      * Socket connected
-     * 
+     *
      * @var boolean resource
      */
     protected $connected;
 
     /**
      * Initialise socket connection
-     * 
+     *
      * @return void
      */
     protected function connect(): void
@@ -38,7 +38,7 @@ class RconService
 
     /**
      * Send a packet to the tcp server.
-     * 
+     *
      * @param string $key
      * @param mixed|null $data
      * @return mixed
@@ -54,8 +54,40 @@ class RconService
     }
 
     /**
+     * Send gift to a user.
+     *
+     * @param User $user
+     * @param integer $item_id
+     * @param string $message
+     * @return mixed
+     */
+    public function sendGift(User $user, int $item_id, string $message = 'Here is a gift.')
+    {
+        return $this->sendPacket('sendgift', [
+            'user_id' => $user->id,
+            'itemid' => $item_id,
+            'message' => $message,
+        ]);
+    }
+
+    /**
+     * Give credits to user.
+     *
+     * @param user $user
+     * @param int $credits
+     * @return mixed
+     */
+    public function giveCredits(user $user, int $credits)
+    {
+        return $this->sendPacket('givecredits', [
+            'user_id' => $user->id,
+            'credits' => $credits,
+        ]);
+    }
+
+    /**
      * Give badge to a user.
-     * 
+     *
      * @param User $user
      * @param string $badge
      * @return mixed
@@ -70,7 +102,7 @@ class RconService
 
     /**
      * Update users motto.
-     * 
+     *
      * @param User $user
      * @param string $motto
      * @return mixed
@@ -85,7 +117,7 @@ class RconService
 
     /**
      * Update the word filter.
-     * 
+     *
      * @return mixed
      */
     public function updateWordFilter()
@@ -95,7 +127,7 @@ class RconService
 
     /**
      * Update user data.
-     * 
+     *
      * @param User $user
      * @param string $column
      * @param mixed $value
@@ -111,7 +143,7 @@ class RconService
 
     /**
      * Update users username.
-     * 
+     *
      * @param User $user
      * @param string $username
      * @return mixed
@@ -123,7 +155,7 @@ class RconService
 
     /**
      * Give user points by type.
-     * 
+     *
      * @param User $user
      * @param int $type
      * @param int $amount
@@ -140,7 +172,7 @@ class RconService
 
     /**
      * Give user diamonds.
-     * 
+     *
      * @param User $user
      * @param int $amount
      * @return mixed
@@ -152,7 +184,7 @@ class RconService
 
     /**
      * Give user duckets.
-     * 
+     *
      * @param User $user
      * @param int $amount
      * @return mixed
@@ -164,7 +196,7 @@ class RconService
 
     /**
      * Set users rank.
-     * 
+     *
      * @param User $user
      * @param Permission $permission
      * @return mixed
@@ -179,7 +211,7 @@ class RconService
 
     /**
      * Update the catalog.
-     * 
+     *
      * @return mixed
      */
     public function updateCatalog()
@@ -189,7 +221,7 @@ class RconService
 
     /**
      * Send user an alert.
-     * 
+     *
      * @param User $user
      * @param string $message
      * @return mixed
@@ -204,7 +236,7 @@ class RconService
 
     /**
      * Send user to a room.
-     * 
+     *
      * @param User $user
      * @param int $roomId
      * @return mixed
