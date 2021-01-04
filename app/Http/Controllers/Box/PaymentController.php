@@ -31,7 +31,7 @@ class PaymentController extends Controller
                 $rcon->giveCredits($request->user(), -$box->price);
             break;
             case 'diamonds':
-                if ($request->user()->currencies->where('type', 5)->first()->amount ?? 0 < $box->price) return response()->json(['funds' => 'You have insufficient diamonds in your account.'], 422);
+                if ($request->user()->currencies->where('type', '5')->first()->amount < $box->price) return response()->json(['funds' => 'You have insufficient diamonds in your account.'], 422);
                 $rcon->giveDiamonds($request->user(), -$box->price);
             break;
         }
