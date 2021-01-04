@@ -16,6 +16,7 @@ class CreatePrizesTable extends Migration
         Schema::create('prizes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image');
             $table->unsignedBigInteger('box_id');
             $table->integer('prize');
             $table->enum('prize_type', ['credits', 'diamonds', 'furni']);

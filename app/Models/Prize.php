@@ -16,7 +16,7 @@ class Prize extends Model
      */
     protected $fillable = [
         'name', 'box_id', 'prize_type',
-        'prize', 'percentage',
+        'prize', 'percentage', 'image',
     ];
 
     /**
