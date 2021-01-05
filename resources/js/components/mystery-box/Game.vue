@@ -7,7 +7,7 @@
         <i class="fas fa-chevron-left mr-2" />
         <span>Back</span>
       </jet-button>
-      <img :src="prize.image || box.image" :alt="box.name" class="h-28 mx-auto mb-4" />
+      <img :src="`/storage/${prize.image || box.image}`" :alt="box.name" class="h-28 mx-auto mb-4" />
       <jet-button :loading="loading" :disabled="loading" @click="purchaseBox">Open for {{ price }}</jet-button>
     </div>
     <div class="p-4">
@@ -16,7 +16,7 @@
         <div v-for="(prize, index) of box.prizes" :key="index" class="w-full md:w-1/3 px-4 mb-4">
           <jet-card class="p-4">
             <div class="relative flex justify-center items-center bg-gray-200 p-4 mb-4">
-              <img :src="prize.image" :alt="prize.name" class="h-24" />
+              <img :src="`/storage/${prize.image}`" :alt="prize.name" class="h-24" />
               <div class="flex items-center justify-center text-white font-bold absolute right-0 top-0 m-2 bg-green-400 rounded-lg w-8 h-8">x{{ prize.quantity }}</div>
             </div>
             <p class="font-bold mb-2">{{ prize.name }}</p>
