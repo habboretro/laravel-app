@@ -77,6 +77,10 @@ class Prize extends Resource
                 ->rules('required')
                 ->help('This will be either a furni id or currency amount.'),
 
+            Number::make('Quantity')
+                    ->rules('required', 'min:1')
+                    ->default(1),
+
             Number::make('Percentage')
                     ->rules('required'),
         ];

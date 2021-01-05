@@ -20,6 +20,7 @@ class CreatePrizesTable extends Migration
             $table->unsignedBigInteger('box_id');
             $table->integer('prize');
             $table->enum('prize_type', ['credits', 'diamonds', 'furni']);
+            $table->integer('quantity');
             $table->decimal('percentage', 10, 2);
             $table->timestamps();
         });

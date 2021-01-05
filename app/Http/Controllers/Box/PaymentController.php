@@ -46,7 +46,9 @@ class PaymentController extends Controller
         switch ($prize->prize_type) {
             case 'furni':
                 $rcon->alertUser($request->user(), sprintf('Well Done! You just won %s, please check your inventory for a gift.', $prize->name));
-                $rcon->sendGift($request->user(), $prize->prize, sprintf('Well Done! Here is your %s', $prize->name));
+                foreach (range(1, $prize->quantity) as $index) {
+                    $rcon->sendGift($request->user(), $prize->prize, sprintf('Well Done! Here is your %s', $prize->name));
+                }
             break;
             case 'credits':
                 $rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
