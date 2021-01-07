@@ -66,7 +66,7 @@ class News extends Resource
                 ->withFiles('public'),
 
             Image::make('Image')
-                ->rules('required')
+                ->creationRules('required')
                 ->disk('public'),
 
             BelongsTo::make('User'),

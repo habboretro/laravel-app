@@ -62,7 +62,7 @@ class Prize extends Resource
                 ->rules('required'),
 
             Image::make('Image')
-                ->rules('required')
+                ->creationRules('required')
                 ->disk('public'),
 
             Select::make('Prize Type')
