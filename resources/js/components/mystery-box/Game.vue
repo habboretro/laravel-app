@@ -17,7 +17,7 @@
           <jet-card class="p-4">
             <div class="relative flex justify-center items-center bg-gray-200 p-4 mb-4">
               <img :src="`/storage/${prize.image}`" :alt="prize.name" class="h-24" />
-              <div class="flex items-center justify-center text-white font-bold absolute right-0 top-0 m-2 bg-green-400 rounded-lg w-8 h-8">x{{ prize.quantity }}</div>
+              <div class="flex items-center justify-center text-white font-bold absolute right-0 top-0 m-2 bg-green-400 rounded-lg px-4 h-8">x{{ prize.quantity }}</div>
             </div>
             <p class="font-bold mb-2">{{ prize.name }}</p>
             <p class="text-right text-gray-500 text-xs">{{ prize.percentage }}%</p>
