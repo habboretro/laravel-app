@@ -73,6 +73,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::prefix('api')->group(function () {
     Route::post('/purchase/{product}', Controllers\PurchaseProductController::class)->middleware('auth:sanctum');
+    Route::post('/purchase/vip/{type}', Controllers\PurchaseVipController::class)->middleware('auth:sanctum');
     Route::put('/update-email', Settings\UpdateEmailController::class)->middleware('auth:sanctum');
     Route::put('/update-password', Settings\UpdatePasswordController::class)->middleware('auth');
     Route::prefix('boxes')->middleware('auth:sanctum')->group(function () {
