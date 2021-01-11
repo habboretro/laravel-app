@@ -41,7 +41,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return $user->rank >= 3;
+            return $user->rank >= config('habbo.default.min_rank');
         });
     }
 

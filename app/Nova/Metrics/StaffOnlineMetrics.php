@@ -10,7 +10,7 @@ class StaffOnlineMetrics extends Value
 {
     /**
      * Metrics Label.
-     * 
+     *
      * @return string
      */
     public function name()
@@ -27,7 +27,7 @@ class StaffOnlineMetrics extends Value
     public function calculate(NovaRequest $request)
     {
         return $this->result(
-            User::where('rank', '>', 2)->where('online', '1')->count()
+            User::where('rank', '>', config('habbo.default.min_rank'))->where('online', '1')->count()
         );
     }
 
@@ -39,7 +39,7 @@ class StaffOnlineMetrics extends Value
     public function ranges()
     {
         return [
-            // 
+            //
         ];
     }
 

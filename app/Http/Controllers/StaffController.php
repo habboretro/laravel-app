@@ -19,7 +19,7 @@ class StaffController extends Controller
     public function __invoke(Request $request): Response
     {
         return Inertia::render('staff', [
-            'users' => new UserCollection(User::where('rank', '>=', 3)
+            'users' => new UserCollection(User::where('rank', '>=', config('habbo.default.min_rank'))
                 ->orderBy('rank', 'DESC')
                 ->get()),
         ]);

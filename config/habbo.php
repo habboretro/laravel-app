@@ -35,6 +35,7 @@ return [
      * Default configuration.
      */
     'default' => [
+        'min_rank' => env('MIN_STAFF_RANK', 4),
         'credits' => env('HABBO_DEFAULT_CREDITS', 10000),
         'look' => env('HABBO_DEFAULT_LOOK', 'hr-100.hd-190-7.ch-210-66.lg-270-82.sh-290-80'),
         'motto' => env('HABBO_DEFAULT_MOTTO', sprintf('Welcome to %s', config('habbo.site.sitename'))),
