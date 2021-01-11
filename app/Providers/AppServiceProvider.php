@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // 
+        //
     }
 
     /**
@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share('sitename', fn () => config('habbo.site.sitename'));
         Inertia::share('socials', fn () => config('habbo.socials'));
         Inertia::share('csrf_token', fn (Request $request) => $request->session()->token());
+        Inertia::share('discord_id', fn () => config('habbo.site.discord_id'));
         Inertia::share('flash', fn () => [
             'success' => Session::get('success'),
             'error' => Session::get('error'),
