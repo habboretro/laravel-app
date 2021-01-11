@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProductCollection;
 
 class StoreController extends Controller
 {
@@ -17,7 +18,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('store', [
-            'products' => Product::orderBy('price', 'ASC')->get(),
+            'products' => new ProductCollection(Product::orderBy('price', 'ASC')->get()),
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Box;
 
 use App\Models\Box;
 use Illuminate\Http\Request;
+use App\Http\Resources\BoxResource;
 use App\Http\Controllers\Controller;
 
 class ShowController extends Controller
@@ -17,6 +18,7 @@ class ShowController extends Controller
     public function __invoke(Request $request, Box $box)
     {
         $box->load('prizes');
-        return response()->json($box);
+
+        return response()->json(new BoxResource($box));
     }
 }

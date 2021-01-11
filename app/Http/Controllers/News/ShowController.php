@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\NewsResource;
 
 class ShowController extends Controller
 {
@@ -21,7 +22,7 @@ class ShowController extends Controller
         $news->load('user');
 
         return Inertia::render('news/show', [
-            'article' => $news,
+            'article' => new NewsResource($news),
         ]);
     }
 }

@@ -5,7 +5,7 @@
       <jet-card class="p-4">
         <jet-title-card class="mb-4">{{ $page.shortname }} Staff</jet-title-card>
         <div class="flex flex-wrap -mx-4">
-          <jet-staff-item v-for="(item, index) of users" :key="index" :item="item" class="w-full md:w-1/2" />
+          <jet-staff-item v-for="(item, index) of users.data" :key="index" :item="item" class="w-full md:w-1/2" />
         </div>
       </jet-card>
     </div>
@@ -36,7 +36,7 @@ export default {
     JetStaffItem,
   },
   props: {
-    users: Array
+    users: Object
   },
   metaInfo () {
     return {

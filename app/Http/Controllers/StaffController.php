@@ -6,6 +6,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserCollection;
 
 class StaffController extends Controller
 {
@@ -18,9 +19,9 @@ class StaffController extends Controller
     public function __invoke(Request $request): Response
     {
         return Inertia::render('staff', [
-            'users' => User::where('rank', '>=', 3)
+            'users' => new UserCollection(User::where('rank', '>=', 3)
                 ->orderBy('rank', 'DESC')
-                ->get(),
+                ->get()),
         ]);
     }
 }

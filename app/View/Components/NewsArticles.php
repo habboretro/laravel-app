@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use App\Models\News;
 use Illuminate\View\Component;
+use App\Http\Resources\NewsCollection;
 
 class NewsArticles extends Component
 {
@@ -30,10 +31,12 @@ class NewsArticles extends Component
     public function render()
     {
         return view('components.news-articles', [
-            'articles' => News::with('user')
-                ->latest()
-                ->limit($this->limit)
-                ->get(),
+            'articles' => new NewsCollection(
+                News::with('user')
+                    ->latest()
+                    ->limit($this->limit)
+                    ->get()
+            ),
         ]);
     }
 }

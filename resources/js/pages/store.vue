@@ -7,7 +7,7 @@
     <div class="w-full md:flex-1 px-4 mb-4">
       <jet-title-card icon="fas fa-coins" class="mb-4">Currency</jet-title-card>
       <div class="flex flex-wrap items-start -mx-4">
-        <div v-for="(product, index) in products" :key="index" class="w-full md:w-1/3 px-4 mb-4">
+        <div v-for="(product, index) in products.data" :key="index" class="w-full md:w-1/3 px-4 mb-4">
           <jet-card class="p-4">
             <p class="text-center text-3xl font-bold">{{ product.reward }}</p>
             <p class="text-sm text-gray-600 text-center mb-4">{{ getType(product.type) }}</p>
@@ -60,7 +60,7 @@ export default {
     JetErrorMessage,
   },
   props: {
-    products: Array,
+    products: Object,
     user: Object
   },
   metaInfo () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Box;
 use App\Models\Box;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BoxCollection;
 
 class IndexController extends Controller
 {
@@ -16,8 +17,6 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $boxes = Box::all();
-
-        return response()->json($boxes);
+        return response()->json(new BoxCollection(Box::all()));
     }
 }

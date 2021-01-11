@@ -4,7 +4,7 @@
   <article {{ $attributes->merge(['class' => '']) }}>
     <x-card>
       <div class="overflow-hidden h-32">
-        <img src="/storage/{{ $article->image }}" alt="{{ $article->slug }}" class="object-cover min-w-full min-h-full" />
+        <img src="{{ $article->image }}" alt="{{ $article->slug }}" class="object-cover min-w-full min-h-full" />
       </div>
       <div class="p-4">
         <p class="text-green-500 font-bold mb-4">{{ $article->title }}</p>
