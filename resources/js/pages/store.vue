@@ -101,7 +101,7 @@ export default {
         {
           name: 'Standards',
           type: 'standard',
-          price: 10.00,
+          price: 7.00,
           rank: 2,
           items: [
             '8 Diamonds every 10 minutes',
@@ -114,7 +114,7 @@ export default {
         {
           name: 'Diamond',
           type: 'diamond',
-          price: 20,
+          price: 12,
           rank: 3,
           items: [
             'Everything in Standard VIP',

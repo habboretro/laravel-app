@@ -18,12 +18,12 @@ class PurchaseVipController extends Controller
         [
             'type' => 'standard',
             'rank' => 2,
-            'price' => 10,
+            'price' => 7,
         ],
         [
             'type' => 'diamond',
             'rank' => 3,
-            'price' => 20,
+            'price' => 10,
         ],
     ];
 
