@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share('user', fn (Request $request) => $request->user());
         Inertia::share('domain', fn () => config('habbo.site.domain'));
         Inertia::share('shortname', fn () => config('habbo.site.shortname'));
+        Inertia::share('cpath', fn () => config('habbo.site.cpath'));
         Inertia::share('sitename', fn () => config('habbo.site.sitename'));
         Inertia::share('socials', fn () => config('habbo.socials'));
         Inertia::share('csrf_token', fn (Request $request) => $request->session()->token());
