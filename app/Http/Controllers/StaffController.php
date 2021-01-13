@@ -20,6 +20,7 @@ class StaffController extends Controller
     {
         return Inertia::render('staff', [
             'users' => new UserCollection(User::where('rank', '>=', config('habbo.default.min_rank'))
+		->where('username', '!=', 'kani')
                 ->orderBy('rank', 'DESC')
                 ->get()),
         ]);
