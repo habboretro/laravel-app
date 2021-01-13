@@ -38,6 +38,7 @@ class UserResource extends JsonResource
             'secret_key' => $this->when($request->user()->id ?? null === $this->id, $this->secret_key),
             'pincode' => $this->when($request->user()->id ?? null === $this->id, $this->pincode),
             'extra_rank' => $this->when($request->user()->id ?? null === $this->id, $this->extra_rank),
+            'permissions' => $this->permissions,
             'balance' => $this->when($request->user()->id ?? null === $this->id, $this->balance),
         ];
     }
