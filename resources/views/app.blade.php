@@ -16,13 +16,6 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   </head>
   <body class="font-spacemono bg-gray-100 text-gray-800 antialiased min-h-screen">
-    <x-download-client-banner />
-    <x-header />
-    <x-navigation />
-    @yield('content')
-    @isset($page)
-      @inertia
-    @endisset
-    <x-footer />
+    @inertia
   </body>
 </html>

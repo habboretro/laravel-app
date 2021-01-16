@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Services\RconService;
+use App\Models\Permission;
 use Illuminate\Http\Request;
+use App\Services\RconService;
 use Illuminate\Support\Facades\Redirect;
 
 class PurchaseProductController extends Controller
@@ -23,6 +24,11 @@ class PurchaseProductController extends Controller
 
         if ($product->type === '0') {
             $rcon->giveDuckets($request->user(), $product->reward);
+        }
+
+        if (in_array($product->type, ['vip', 'diamond_vip'])) {
+            $request->user()->update(['rank' => $product->reward]);
+            $rcon->setRank($request->user(), Permission::find($product->reward));
         }
 
         if ($product->type === '5') {

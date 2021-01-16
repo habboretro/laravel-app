@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -19,12 +20,14 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'account_created' => $this->account_created,
             'last_login' => $this->last_login,
-            'last_online' => $this->last_online,
+            'last_online' => Carbon::parse($this->last_online)->diffForHumans(),
             'motto' => $this->motto,
             'look' => $this->look,
             'gender' => $this->gender,
             'rank' => $this->rank,
             'credits' => $this->credits,
+            'diamonds' => $this->currencies->where('type', 5)->first()->amount,
+            'duckets' => $this->currencies->where('type', 0)->first()->amount,
             'online' => $this->online,
             'real_name' => $this->when($request->user()->id ?? null === $this->id, $this->real_name),
             'mail' => $this->when($request->user()->id ?? null === $this->id, $this->mail),

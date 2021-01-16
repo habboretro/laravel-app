@@ -38,7 +38,13 @@ Route::get('/highscores', Controllers\HighScoreController::class)
 Route::get('/staff', Controllers\StaffController::class)
     ->name('staff');
 
+Route::get('/downloads', Controllers\DownloadController::class)
+    ->name('downloads');
+
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/logout', 'Laravel\Fortify\Http\Controllers\AuthenticatedSessionController@destroy')
+        ->name('logout');
+
     Route::get('/banned', Controllers\BannedController::class)
         ->name('banned');
 
@@ -73,7 +79,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::prefix('api')->group(function () {
     Route::post('/purchase/{product}', Controllers\PurchaseProductController::class)->middleware('auth:sanctum');
-    Route::post('/purchase/vip/{type}', Controllers\PurchaseVipController::class)->middleware('auth:sanctum');
     Route::put('/update-email', Settings\UpdateEmailController::class)->middleware('auth:sanctum');
     Route::put('/update-password', Settings\UpdatePasswordController::class)->middleware('auth');
     Route::prefix('boxes')->middleware('auth:sanctum')->group(function () {

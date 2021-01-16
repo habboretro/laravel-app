@@ -1,34 +1,39 @@
-<header {{ $attributes->merge(['class' => 'relative h-48 bg-blue-100 bg-no-repeat bg-right-bottom']) }} style="background-image: url('/images/banner.png');">
-  <div class="inset-0 absolute bg-gray-800 opacity-50 w-full h-full"></div>
-  <div class="relative container h-full px-4 mx-auto md:px-0">
-    <div class="block w-full h-full md:flex md:justify-between md:items-center">
-      <div class="w-full mb-4 pt-4 md:pt-0 md:mb-0 md:w-auto">
-        <img src="https://habbofont.net/font/habbo_news/{{ config('habbo.site.shortname') }}.gif" alt="Logo" class="block mx-auto" />
+<header {{ $attributes->merge(['class' => 'bg-gray-800 pb-24 shadow']) }}>
+  <div class="container mx-auto px-4 md:px-0">
+    <div class="flex py-8 items-center md:border-b md:border-gray-600 md:shadow">
+      <x-logo class="mr-10" />
+      <div class="hidden flex-1 mr-4 md:block">
+        <a href="{{ route('downloads') }}">
+          <x-jet-button class="bg-teal-500 mr-4 hover:bg-teal-600 active:bg-teal-600">Download our client</x-jet-button>
+        </a>
       </div>
-      <div class="w-full md:w-auto">
-        @guest
-          <a href="{{ route('register') }}" class="block w-64 mb-4 mx-auto">
-            <x-jet-button class="w-full bg-green-400 justify-center mx-auto hover:bg-green-500 active:bg-green-500 focus:border-green-500">
-              <i class="fas fa-plus mr-4"></i>
-              <span>Register Now</span>
+      <div class="hidden md:block">
+        <a href="{{ route('login') }}" class="mr-4">
+          <x-jet-button class="bg-teal-500 hover:bg-teal-600 active:bg-teal-600">Login</x-jet-button>
+        </a>
+        <a href="{{ route('register') }}">
+          <x-jet-button class="bg-teal-500 hover:bg-teal-600 active:bg-teal-600">Register</x-jet-button>
+        </a>
+      </div>
+      <div class="block ml-auto md:hidden">
+        <x-jet-dropdown align="right" class="w-32">
+          <x-slot name="trigger">
+            <x-jet-button>
+              <i class="text-xl fas fa-bars"></i>
             </x-jet-button>
-          </a> 
-        @endguest
-        @auth
-          <a href="{{ route('game') }}" class="block w-64 mb-4 mx-auto">
-            <x-jet-button class="w-full bg-green-400 justify-center mx-auto hover:bg-green-500 active:bg-green-500 focus:border-green-500">
-              <i class="fas fa-sign-in-alt mr-4"></i>
-              <span>Enter {{ config('habbo.site.shortname') }}</span>
-            </x-jet-button>
-          </a> 
-        @endauth
-        <div class="block w-64 mx-auto">
-          <x-jet-button class="w-full justify-center mx-auto">
-            <i class="fas fa-users mr-4"></i>
-            <span>{{ $online_count }} {{ config('habbo.site.shortname') }}'s Online</span>
-          </x-jet-button>
-        </div>
+          </x-slot>
+          <x-slot name="content">
+            <x-jet-dropdown-link href="{{ route('index') }}">Homepage</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('news.index') }}">News</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('highscores') }}">Highscores</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('staff') }}">Staff</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('store') }}">Store</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('login') }}">Login</x-jet-dropdown-link>
+            <x-jet-dropdown-link href="{{ route('register') }}">Register</x-jet-dropdown-link>
+          </x-slot>
+        </x-jet-dropdown>
       </div>
     </div>
+    <x-navigation />
   </div>
 </header>

@@ -1,7 +1,6 @@
 <template>
   <section class="flex flex-wrap items-start -mx-4">
     <div class="w-full md:flex-1 px-4 mb-4">
-      <jet-card class="p-4 h-20 bg-cover mb-4" style="background-image: url('/images/coffee-house.png')" />
       <jet-card class="p-4">
         <jet-title-card class="mb-4">{{ $page.shortname }} Staff</jet-title-card>
         <div class="flex flex-wrap -mx-4">

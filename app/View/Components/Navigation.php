@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\User;
 use Illuminate\View\Component;
-use Illuminate\Support\Facades\Route;
 
 class Navigation extends Component
 {
@@ -14,10 +14,9 @@ class Navigation extends Component
      */
     public function render()
     {
-        if (Route::is('game')) return '';
-
         return view('components.navigation', [
-            'user' => request()->user(),
+            'onlineCount' => User::where('online', '1')
+                ->count(),
         ]);
     }
 }

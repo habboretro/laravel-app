@@ -1,19 +1,17 @@
 @props(['article'])
 
-<a href="{{ route('news.show', [ 'news' => $article->slug ]) }}">
-  <article {{ $attributes->merge(['class' => '']) }}>
-    <x-card>
-      <div class="overflow-hidden h-32">
+<a href="{{ route('news.show', [ 'news' => $article->slug ]) }}" {{ $attributes->merge(['class' => 'w-full px-4 pb-4 md:w-1/3']) }}>
+  <article>
+    <x-card class="cursor-pointer overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">
+      <div class="relative overflow-hidden h-32">
+        <p class="absolute right-0 top-0 bg-white text-xs px-2 py-1 rounded-lg shadow m-4">{{ $article->created_at->diffForHumans() }}</p>
         <img src="{{ Storage::url($article->image) }}" alt="{{ $article->slug }}" class="object-cover min-w-full min-h-full" />
       </div>
       <div class="p-4">
-        <p class="text-green-500 font-bold mb-4">{{ $article->title }}</p>
-        <p class="text-gray-500 font-light text-sm">{{ $article->short_story }}</p>
-      </div>
-      <div class="flex items-center px-4 py-2 bg-gray-200 rounded-b">
-        <p class="font-bold text-xs">{{ $article->user->username ?? sprintf('%s Staff', config('habbo.site.shortname')) }}</p>
-        <p class="text-xs ml-auto">{{ $article->created_at->diffForHumans() }}</p>
+        <p class="text-purple-900 text-lg font-bold mb-2">{{ $article->title }}</p>
+        <p class="text-sm italic">{{ $article->short_story }}</p>
       </div>
     </x-card>
   </article>
 </a>
+

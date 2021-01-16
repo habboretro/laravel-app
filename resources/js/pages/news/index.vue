@@ -1,20 +1,22 @@
 <template>
   <section>
-    <jet-title-card icon="fas fa-newspaper" class="mb-4">Latest Articles</jet-title-card>
-    <jet-article-list :items="articles" :perLine="3" />
+    <jet-news-articles
+      :items="articles"
+      :perLine="3"
+      hideTitle
+    />
   </section>
 </template>
 
 <script>
 import Layout from "@/layouts/master";
-import JetTitleCard from "@/components/TitleCard";
-import JetArticleList from "@/components/ArticleList";
+import JetCard from "@/components/Card";
+import JetNewsArticles from "@/components/NewsArticles";
 export default {
   layout: Layout,
   components: {
-    JetTitleCard,
-    JetArticleList,
-
+    JetCard,
+    JetNewsArticles,
   },
   props: {
     articles: Object

@@ -2,7 +2,7 @@
   <section class="flex flex-wrap md:-mx-4">
     <div class="w-full md:px-4 md:flex-1 mb-4">
       <jet-card class="px-4 py-4 pb-12">
-        <jet-card class="p-4 text-white text-center bg-cover bg-center rounded-lg mb-4" :style="`background-image: url('${article.image}');`">
+        <jet-card class="p-4 text-white text-center bg-cover bg-center rounded-lg mb-4" :style="`background-image: url('${article.data.image}');`">
           <div class="relative w-full py-4">
             <div class="absolute inset-0 bg-black opacity-50 rounded-lg" />
             <div class="relative z-10">
@@ -25,6 +25,7 @@
             <p class="font-bold mb-1">Posted by {{ article.data.user ? article.data.user.username : `${$page.shortname} Team` }}</p>
             <p class="text-sm">{{ article.data.created_at | formatDate }}</p>
           </div>
+          <!-- Recent Posts -->
         </div>
       </jet-card>
     </div>
@@ -57,3 +58,9 @@ export default {
   },
 };
 </script>
+
+<style>
+p[data-f-id="pbf"] {
+  display: none!important;
+}
+</style>

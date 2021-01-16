@@ -1,6 +1,5 @@
 <template>
   <section>
-    <jet-title-card icon="fas fa-trophy" class="mb-4">Highscores</jet-title-card>
     <div class="flex flex-wrap -mx-4">
       <jet-highscore-card :items="duckets" type="Duckets" class="w-full md:w-1/3" />
       <jet-highscore-card :items="diamonds" type="Diamonds" class="w-full md:w-1/3" />

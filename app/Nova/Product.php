@@ -42,7 +42,7 @@ class Product extends Resource
      */
     public function fields(Request $request)
     {
-        $types = [0 => 'Duckets', 5 => 'Diamonds'];
+        $types = [0 => 'Duckets', 5 => 'Diamonds', 'vip' => 'VIP', 'diamond_vip' => 'Diamond VIP'];
 
         return [
             ID::make()->sortable(),
@@ -59,8 +59,9 @@ class Product extends Resource
                 ->rules('required')
                 ->options($types),
 
-            Number::make('Reward')
-                ->rules('required'),
+            Number::make('Reward or Rank', 'reward')
+                ->rules('required')
+                ->default(1),
         ];
     }
 

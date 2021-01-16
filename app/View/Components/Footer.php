@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use App\Models\User;
 use Illuminate\View\Component;
-use Illuminate\Support\Facades\Route;
+use App\Http\Resources\UserCollection;
 
 class Footer extends Component
 {
@@ -15,10 +15,6 @@ class Footer extends Component
      */
     public function render()
     {
-        if (Route::is('game')) return '';
-
-        return view('components.footer', [
-            'users' => User::inRandomOrder()->where('online', true)->limit(30)->get(),
-        ]);
+        return view('components.footer');
     }
 }
