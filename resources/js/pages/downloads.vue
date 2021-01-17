@@ -6,7 +6,9 @@
           <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600">Windows</h3>
           <p class="mt-5 text-base text-gray-500">This download is our bundled i32 and x64 Windows application w/ auto updating support.</p>
           <div class="pt-6">
-            <jet-button class="w-full justify-center mb-4">Download for windows</jet-button>
+            <a href="/storage/windows.exe" target="_blank">
+              <jet-button class="w-full justify-center mb-4">Download for windows</jet-button>
+            </a>
             <jet-button class="w-full justify-center">Virus scan by VirusTotal</jet-button>
           </div>
         </jet-card>
@@ -16,7 +18,9 @@
           <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600">Mac</h3>
           <p class="mt-5 text-base text-gray-500">Same as Windows, built for Mac. Tested on various Mac systems including M1 and Big Sur.</p>
           <div class="pt-6">
-            <jet-button class="w-full justify-center mb-4">Download for Mac</jet-button>
+            <a href="/storage/osx.dmg" target="_blank">
+              <jet-button class="w-full justify-center mb-4">Download for Mac</jet-button>
+            </a>
             <jet-button class="w-full justify-center">Virus scan by VirusTotal</jet-button>
           </div>
         </jet-card>
