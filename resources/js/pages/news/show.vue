@@ -25,7 +25,6 @@
             <p class="font-bold mb-1">Posted by {{ article.data.user ? article.data.user.username : `${$page.shortname} Team` }}</p>
             <p class="text-sm">{{ article.data.created_at | formatDate }}</p>
           </div>
-          <!-- Recent Posts -->
         </div>
       </jet-card>
     </div>
@@ -59,8 +58,3 @@ export default {
 };
 </script>
 
-<style>
-p[data-f-id="pbf"] {
-  display: none!important;
-}
-</style>
