@@ -24,7 +24,7 @@
       <span>{{ `${$page.user_count} ${$page.shortname}'s Online` }}</span>
     </jet-button>
 
-    <a v-if="$page.me && $page.me.id" href="/logout">
+    <a v-if="$page.me.data" href="/logout">
       <jet-button class="bg-red-500 hover:bg-red-600 active:bg-red-600">Logout</jet-button>
     </a>
   </nav>
