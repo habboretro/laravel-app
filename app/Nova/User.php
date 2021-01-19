@@ -86,6 +86,10 @@ class User extends Resource
                 ->hideFromIndex()
                 ->default(config('habbo.default.look')),
 
+            Text::make('Referral Code')
+                ->hideFromIndex()
+                ->rules('required'),
+
             // BelongsTo::make('Home Room', 'id', Room::class),
 
             Boolean::make('Online')

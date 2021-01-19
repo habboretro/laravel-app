@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RconService::class, fn () => new RconService);
 
         Inertia::share('me', fn (Request $request) => !is_null($request->user()) ? new UserResource($request->user()) : null);
+        Inertia::share('referral_link', fn (Request $request) => !is_null($request->user()) ? route('register.referral', ['username' => $request->user()->username, 'referral_code' => $request->user()->referral_code]) : null);
         Inertia::share('user_count', fn () => User::where('online', '1')->count());
         Inertia::share('domain', fn () => config('habbo.site.domain'));
         Inertia::share('shortname', fn () => config('habbo.site.shortname'));

@@ -9,6 +9,9 @@
     <x-validation-error class="mb-4" />
     <form method="POST" action="{{ route('register') }}">
       @csrf
+      @if (!is_null(Request::route('referral_code')))
+        <input type="hidden" name="referral_code" value="{{ Request::route('referral_code') }}" />
+      @endif
       <div class="flex items-center justify-between -mx-4">
         <fieldset class='w-full md:w-1/2 px-4 mb-4'>
           <x-jet-label for="username" value="Username" />

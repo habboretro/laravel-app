@@ -63,6 +63,15 @@
             </div>
           </div>
         </div>
+        <div class="w-full px-4 mt-4">
+          <p class="font-bold mb-2 text-sm">
+            <span>Referral Link</span>
+            <span class="ml-1">Earn 100 diamonds per referral</span>
+          </p>
+          <jet-card :class="referralLinkClasses" class="relative px-4 py-2 cursor-pointer rounded-lg transition ease-in-out duration-150" @click="copyReferralLink">
+            <p class="text-sm">{{ $page.referral_link }}</p>
+          </jet-card>
+        </div>
       </div>
     </jet-card>
 
@@ -74,11 +83,11 @@
 </template>
 
 <script>
-import Layout from "@/layouts/master";
-import JetCard from "@/components/Card";
-import JetCardTitle from "@/components/CardTitle";
-import JetButton from "@/components/Button";
-import JetNewsArticles from "@/components/NewsArticles";
+import Layout from "@/layouts/master"
+import JetCard from "@/components/Card"
+import JetCardTitle from "@/components/CardTitle"
+import JetButton from "@/components/Button"
+import JetNewsArticles from "@/components/NewsArticles"
 export default {
   layout: Layout,
   components: {
@@ -93,11 +102,53 @@ export default {
     shortname: String,
     articles: Object
   },
+  data () {
+    return {
+      referralLinkCopied: false
+    }
+  },
   metaInfo () {
     return {
       title: `${this.$page.sitename} - ${this.me.data.username}`,
     }
   },
-};
+  computed: {
+    referralLinkClasses () {
+      return {
+        'bg-gray-100': !this.referralLinkCopied,
+        'hover:bg-gray-200': !this.referralLinkCopied,
+        'active:bg-gray-100': !this.referralLinkCopied,
+        'text-gray-800': !this.referralLinkCopied,
+        'bg-green-400': this.referralLinkCopied,
+        'hover:bg-green-500': this.referralLinkCopied,
+        'active:bg-green-400': this.referralLinkCopied,
+        'text-white': this.referralLinkCopied,
+      }
+    }
+  },
+  methods: {
+    copyReferralLink () {
+      const el = document.createElement("textarea")
+      el.value = this.$page.referral_link
+      el.style.top = '0'
+      el.style.left = '0'
+      el.style.position = 'fixed'
+      document.body.appendChild(el)
+      el.focus()
+      el.select()
+      try {
+        var successful = document.execCommand('copy')
+        this.referralLinkCopied = true
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err)
+      }
+      document.body.removeChild(el)
+
+      setTimeout(() => {
+        this.referralLinkCopied = false
+      }, 3000);
+    }
+  }
+}
 </script>
 

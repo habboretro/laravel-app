@@ -23,6 +23,10 @@ Route::get('/', Controllers\IndexController::class)
     ->middleware('guest')
     ->name('index');
 
+Route::get('/register/{username}/{referral_code}', '\Laravel\Fortify\Http\Controllers\RegisteredUserController@create')
+    ->middleware('guest')
+    ->name('register.referral');
+
 Route::get('/habbo-imaging/avatarimage', HabboImaging\AvatarController::class)
     ->name('habbo-imaging.avatar');
 

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'auth_ticket', 'ip_register', 'ip_current',
         'machine_id', 'home_room', 'secret_key',
         'pincode', 'extra_rank', 'balance',
+        'referral_code',
     ];
 
     /**
@@ -50,14 +51,14 @@ class User extends Authenticatable
 
     /**
      * Indicated if the model should have a rememberToken.
-     * 
+     *
      * @var bool
      */
     protected $rememberTokenName = false;
 
     /**
      * Permissions that belongs to the user.
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -67,7 +68,7 @@ class User extends Authenticatable
 
     /**
      * The user currencies.
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function currencies(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -77,7 +78,7 @@ class User extends Authenticatable
 
     /**
      * The user settings.
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function settings(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -87,7 +88,7 @@ class User extends Authenticatable
 
     /**
      * User bans.
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function bans(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -97,7 +98,7 @@ class User extends Authenticatable
 
     /**
      * The user chatlogs.
-     * 
+     *
      * @var \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function chatlogs(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -107,7 +108,7 @@ class User extends Authenticatable
 
     /**
      * Retrieve the email for password reset.
-     * 
+     *
      * @return string
      */
     public function getEmailForPasswordReset(): string
@@ -117,7 +118,7 @@ class User extends Authenticatable
 
     /**
      * Retrieve the email for notifications.
-     * 
+     *
      * @return string
      */
     public function routeNotificationForMail($notification): string

@@ -3,6 +3,8 @@
 namespace App\Http\Actions;
 
 use App\Models\User;
+use Illuminate\Support\Str;
+use App\Services\RconService;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -52,6 +54,7 @@ class CreateNewUser implements CreatesNewUsers
             'last_login' => Carbon::now()->timestamp,
             'ip_register' => request()->ip(),
             'ip_current' => request()->ip(),
+            'referral_code' => Str::random(20),
         ]);
 
         foreach (config('habbo.default.currencies') as $currency) {
@@ -62,6 +65,17 @@ class CreateNewUser implements CreatesNewUsers
             'daily_respect_points' => config('habbo.default.daily_respect_points'),
             'daily_pet_respect_points' => config('habbo.default.daily_pet_respect_points'),
         ]);
+
+        if (isset($input['referral_code'])) {
+            $referralUser = User::whereReferralCode($input['referral_code'])
+                ->first();
+
+            if (!is_null($referralUser)) {
+                $rcon = new RconService;
+                $rcon->giveDiamonds($referralUser, 100);
+                $rcon->alertUser($referralUser, sprintf('The users you invited %s, has just register, here is 100 Diamonds!', $user->username));
+            }
+        }
 
         return $user;
     }
