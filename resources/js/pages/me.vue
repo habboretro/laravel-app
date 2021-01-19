@@ -64,10 +64,7 @@
           </div>
         </div>
         <div class="w-full px-4 mt-4">
-          <p class="font-bold mb-2 text-sm">
-            <span>Referral Link</span>
-            <span class="ml-1">Earn 100 diamonds per referral</span>
-          </p>
+          <p class="font-bold mb-2 text-sm">Referral Link - Earn 100 diamonds per referral</p>
           <jet-card :class="referralLinkClasses" class="relative px-4 py-2 cursor-pointer rounded-lg transition ease-in-out duration-150" @click="copyReferralLink">
             <p class="text-sm">{{ $page.referral_link }}</p>
           </jet-card>

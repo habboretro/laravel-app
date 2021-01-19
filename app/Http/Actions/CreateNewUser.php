@@ -72,8 +72,8 @@ class CreateNewUser implements CreatesNewUsers
 
             if (!is_null($referralUser)) {
                 $rcon = new RconService;
-                $rcon->giveDiamonds($referralUser, 100);
-                $rcon->alertUser($referralUser, sprintf('The users you invited %s, has just register, here is 100 Diamonds!', $user->username));
+                $rcon->giveDiamonds($referralUser, config('habbo.default.referral_diamonds'));
+                $rcon->alertUser($referralUser, sprintf('%s has registered using your referral link, here is %s diamonds!', $user->username, config('habbo.default.referral_diamonds')));
             }
         }
 
