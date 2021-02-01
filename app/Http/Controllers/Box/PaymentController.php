@@ -6,6 +6,7 @@ use App\Models\Box;
 use App\Models\Prize;
 use Illuminate\Http\Request;
 use App\Services\RconService;
+use App\Http\Resources\PrizeResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 
@@ -60,6 +61,6 @@ class PaymentController extends Controller
             break;
         }
 
-        return response()->json($prize);
+        return response()->json(new PrizeResource($prize));
     }
 }

@@ -9,12 +9,18 @@
         </inertia-link>
       </div>
       <div class="hidden md:block">
-        <inertia-link href="/game">
+        <inertia-link href="/game" class="mr-4">
           <jet-button class="bg-teal-500 hover:bg-teal-600 active:bg-teal-600">
             <i class="fas fa-sign-in-alt mr-2" />
             <span>Enter {{ $page.shortname }}</span>
           </jet-button>
         </inertia-link>
+        <a href="/nitro">
+          <jet-button class="bg-orange-500 hover:bg-orange-600 active:bg-orange-600">
+            <i class="fas fa-sign-in-alt mr-2" />
+            <span>Enter Beta</span>
+          </jet-button>
+        </a>
       </div>
       <div class="block ml-auto md:hidden">
         <jet-dropdown align="right" class="w-32">

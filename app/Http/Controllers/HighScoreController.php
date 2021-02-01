@@ -30,7 +30,7 @@ class HighScoreController extends Controller
 
             'diamonds' => UserCurrency::select('username', 'amount', 'look')
                 ->join('users', 'users.id', '=', 'users_currency.user_id')
-                ->where('rank', '<', config('habbo.default.min_rank'))
+		->where('rank', '<', config('habbo.default.min_rank'))
                 ->where('type', 5)
                 ->orderBy('amount', 'DESC')
                 ->limit(6)

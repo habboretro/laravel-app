@@ -28,7 +28,7 @@
                   <img src="/images/duckets.png" alt="Duckets" class="w-8 drop-shadow" />
                 </div>
                 <div class="flex justify-center items-center flex-1 p-6 overflow-hidden truncate">
-                  <p class="text-xl">{{ me.data.credits }}</p>
+                  <p class="text-xl">{{ me.data.duckets}}</p>
                 </div>
               </jet-card>
             </div>
@@ -47,7 +47,7 @@
                   <img src="/images/diamonds.png" alt="Diamonds" class="w-8 drop-shadow" />
                 </div>
                 <div class="flex justify-center items-center flex-1 p-6 overflow-hidden truncate">
-                  <p class="text-xl">{{ me.data.credits }}</p>
+                  <p class="text-xl">{{ me.data.diamonds }}</p>
                 </div>
               </jet-card>
             </div>

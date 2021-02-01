@@ -22,7 +22,7 @@ class GameController extends Controller
         $user->save();
 
         return Inertia::render('game', [
-            'habbo_swf' => sprintf('%s/%s/%s', config('habbo.site.cpath'), config('habbo.client.external_base'), config('habbo.client.swf')),
+            'habbo_swf' => sprintf('%s/%s/%s?v=2', config('habbo.site.cpath'), config('habbo.client.external_base'), config('habbo.client.swf')),
             'variables' => [
                 'client.allow.cross.domain' => 1,
                 'client.notify.cross.domain' => 0,
@@ -40,7 +40,7 @@ class GameController extends Controller
                 'external.figurepartlist.txt' => sprintf('%s/%s', config('habbo.site.cpath'), config('habbo.client.external_figurepartlist')),
                 'flash.dynamic.avatar.download.configuration' => sprintf('%s/%s', config('habbo.site.cpath'), config('habbo.client.external_figuremap')),
                 'productdata.load.url' => sprintf('%s/%s', config('habbo.site.cpath'), config('habbo.client.external_productdata')),
-                'furnidata.load.url' => sprintf('%s/%s', config('habbo.site.cpath'), config('habbo.client.external_figuredata')),
+                'furnidata.load.url' => sprintf('%s/%s?v=1', config('habbo.site.cpath'), config('habbo.client.external_figuredata')),
                 'sso.ticket' => $user->auth_ticket,
                 'account_id' => $user->id,
                 'client.starting' => sprintf('%s loading....', config('habbo.site.shortname')),

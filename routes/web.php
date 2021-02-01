@@ -60,6 +60,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->middleware(['banned', 'findretros.redirect'])
         ->name('game');
 
+    Route::get('/nitro', Controllers\NitroController::class)
+	->middleware(['banned', 'findretros.redirect'])
+	->name('nitro');
+
     Route::get('/store', Controllers\StoreController::class)
         ->middleware(['banned', 'findretros.redirect'])
         ->name('store');
