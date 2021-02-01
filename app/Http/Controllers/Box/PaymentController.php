@@ -34,6 +34,10 @@ class PaymentController extends Controller
             case 'diamonds':
                 if ($request->user()->currencies->where('type', '5')->first()->amount < $box->price) return response()->json(['funds' => 'You have insufficient diamonds in your account.'], 422);
                 $rcon->giveDiamonds($request->user(), -$box->price);
+	    break;
+	    case 'tokens':
+                if ($request->user()->currencies->where('type', '4')->first()->amount < $box->price) return response()->json(['funds' => 'You have insufficient tokens in your account.'], 422);
+                $rcon->givePoints($request->user(), 4, -$box->price);
             break;
         }
 
@@ -59,6 +63,10 @@ class PaymentController extends Controller
                 $rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
                 $rcon->giveDiamonds($request->user(), $prize->prize, sprintf('Well Done! Here is your %s', $prize->name));
             break;
+	    case 'tokens':
+	    	$rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
+	   	$rcon->givePoints($request->user(), 4, $prize->prize);
+	     break;
         }
 
         return response()->json(new PrizeResource($prize));

@@ -71,6 +71,7 @@ class Prize extends Resource
                     'furni' => 'Furni',
                     'credits' => 'Credits',
                     'diamonds' => 'Diamonds',
+		    'tokens' => 'Tokens',
                 ]),
 
             Number::make('Prize')

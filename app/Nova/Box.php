@@ -59,6 +59,7 @@ class Box extends Resource
                     'balance' => 'Balance',
                     'credits' => 'Credits',
                     'diamonds' => 'Diamonds',
+		    'tokens' => 'Tokens',
                 ]),
 
             Number::make('price')

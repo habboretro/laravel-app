@@ -35,6 +35,10 @@ class PurchaseProductController extends Controller
             $rcon->giveDiamonds($request->user(), $product->reward);
         }
 
+	if ($product->type === '4') {
+	   $rcon->givePoints($request->user(), 4, $product->reward);
+	}
+
         $request->user()->update(['balance' => $request->user()->balance - $product->price]);
 
         return Redirect::route('store')->with('success', 'You purchase was successful.');

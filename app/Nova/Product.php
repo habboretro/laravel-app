@@ -42,7 +42,7 @@ class Product extends Resource
      */
     public function fields(Request $request)
     {
-        $types = [0 => 'Duckets', 5 => 'Diamonds', 'vip' => 'VIP', 'diamond_vip' => 'Diamond VIP'];
+        $types = [0 => 'Duckets', 5 => 'Diamonds', 'vip' => 'VIP', 'diamond_vip' => 'Diamond VIP', 4 => 'Tokens',];
 
         return [
             ID::make()->sortable(),
