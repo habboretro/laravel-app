@@ -19,6 +19,10 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'type' => $this->type,
             'reward' => $this->reward,
+            'category' => $this->category ?: 'No Category',
+            'previous_price' => $this->previous_price,
+            'previous_reward' => $this->previous_reward,
+            'description' => $this->description,
         ];
     }
 }

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Boolean;
+use Froala\NovaFroalaField\Froala;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Product extends Resource
@@ -50,6 +52,11 @@ class Product extends Resource
             Number::make('Price')
                 ->rules('required'),
 
+            Number::make('Previous Price', 'previous_price'),
+
+            Text::make('Category')
+                ->rules('required'),
+
             Text::make('Type', 'type', fn () => $types[$this->type])
                 ->hideWhenCreating()
                 ->hideWhenUpdating(),
@@ -62,6 +69,13 @@ class Product extends Resource
             Number::make('Reward or Rank', 'reward')
                 ->rules('required')
                 ->default(1),
+
+            Number::make('Previous Reward', 'previous_reward'),
+
+            Froala::make('Description'),
+
+            Boolean::make('Recommended')
+                ->rules('required'),
         ];
     }
 

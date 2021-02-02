@@ -80,7 +80,8 @@ class User extends Resource
 
             Text::make('Motto')
                 ->hideFromIndex()
-                ->default(config('habbo.default.motto')),
+                ->default(config('habbo.default.motto'))
+                ->rules('required'),
 
             Text::make('Look')
                 ->hideFromIndex()

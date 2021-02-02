@@ -4,20 +4,33 @@
       <jet-success-message class="w-full mb-4" />
       <jet-error-message class="w-full mb-4" />
     </div>
+    <h2 class="text-center text-white text-4xl capitalize w-full px-4 mb-4 md:text-left">Recommended Products</h2>
     <div class="w-full md:flex-1 px-4 mb-4">
-      <div class="flex flex-wrap items-start -mx-4">
-        <template v-for="(product, index) in products.data">
-          <div v-if="canShowProduct(product)" :key="index" class="w-full md:w-1/3 px-4 mb-4">
-            <jet-card class="p-4">
-              <p class="text-center text-3xl font-bold">{{ ['vip', 'diamond_vip'].includes(product.type) ? $page.shortname : product.reward }}</p>
-              <p class="text-sm text-gray-600 text-center mb-4">{{ getType(product.type) }}</p>
-              <jet-button :loading="loading" :disabled="loading" class="w-full justify-center" @click="purchaseItem(product.id)">Purchase (£{{ product.price }})</jet-button>
-            </jet-card>
-          </div>
-        </template>
+      <div class="mb-4">
+        <div class="flex flex-wrap items-start -mx-4">
+          <template v-for="(product, index) in recommended.data">
+            <div v-if="canShowProduct(product)" :key="index" class="w-full md:w-1/2 px-4 mb-4">
+              <jet-card class="p-4">
+                <div class="uppercase font-bold table text-xs text-white bg-teal-500 px-2 py-1 rounded-full mb-4">{{ product.category }}</div>
+                <p class="flex items-center text-xl font-bold">
+                  <span v-if="!['vip', 'diamond_vip'].includes(product.type)" class="mr-1">{{ product.reward }}</span>
+                  <span class="mr-2">{{ getType(product.type) }}</span>
+                  <span v-if="product.previous_reward" class="uppercase font-bold inline text-xs text-white bg-red-600 px-2 py-px rounded-full line-through ml-auto">{{ product.previous_reward }} {{ getType(product.type) }}</span>
+                </p>
+
+                <p class="text-lg mb-2">
+                  <span>£{{ product.price }}</span>
+                  <span v-if="product.previous_price" class="font-light text-sm text-red-600 line-through">£{{ product.previous_price }}</span>
+                </p>
+                <p class="text-gray-600 mb-2" v-html="product.description" />
+                <jet-button :loading="loading" :disabled="loading" class="w-full justify-center" @click="purchaseItem(product.id)">Purchase</jet-button>
+              </jet-card>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
-    <div class="w-full px-4 md:w-1/3">
+    <div class="w-full px-4 mb-4 md:w-1/3">
       <jet-card class="p-4">
         <div class="flex items-center px-4 py-2 bg-yellow-200 text-yellow-500 rounded-lg mb-4">
           <i class="fas fa-piggy-bank text-5xl mr-4" />
@@ -36,6 +49,34 @@
           </fieldset>
         </form>
       </jet-card>
+    </div>
+    <div class="w-full px-4 mb-4">
+      <template v-for="(productList, index) in products">
+        <div v-if="canShowList(productList)" :key="index" class="w-full mb-4">
+          <h2 class="text-center text-4xl capitalize mb-4 md:text-left">{{ productList[0].category }}</h2>
+          <div class="flex flex-wrap items-start -mx-4">
+            <template v-for="(product, key) in productList">
+              <div v-if="canShowProduct(product)" :key="key" class="w-full md:w-1/3 px-4 mb-4">
+                <jet-card class="p-4">
+                  <div class="uppercase font-bold table text-xs text-white bg-teal-500 px-2 py-1 rounded-full mb-4">{{ product.category }}</div>
+                  <p class="flex items-center text-xl font-bold">
+                    <span v-if="!['vip', 'diamond_vip'].includes(product.type)" class="mr-1">{{ product.reward }}</span>
+                    <span class="mr-2">{{ getType(product.type) }}</span>
+                    <span v-if="product.previous_reward" class="uppercase font-bold inline text-xs text-white bg-red-600 px-2 py-px rounded-full line-through ml-auto">{{ product.previous_reward }} {{ getType(product.type) }}</span>
+                  </p>
+
+                  <p class="text-lg mb-4">
+                    <span>£{{ product.price }}</span>
+                    <span v-if="product.previous_price" class="font-light text-sm text-red-600 line-through">£{{ product.previous_price }}</span>
+                  </p>
+                  <p class="text-gray-500 mb-4" v-html="product.description" />
+                  <jet-button :loading="loading" :disabled="loading" class="w-full justify-center" @click="purchaseItem(product.id)">Purchase</jet-button>
+                </jet-card>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
     </div>
   </section>
 </template>
@@ -63,6 +104,7 @@ export default {
     JetDropdownLink,
   },
   props: {
+    recommended: Object,
     products: Object,
     me: Object
   },
@@ -80,17 +122,22 @@ export default {
         vip: 'VIP',
         diamond_vip: 'Diamond VIP',
         0: 'Duckets',
+        4: 'Tokens',
         5: 'Diamonds',
       },
     }
   },
   methods: {
+    canShowList (products) {
+      if (products[0].category === 'membership' && products.every(product => this.me.data.rank >= product.reward)) return false
+      return true
+    },
     canShowProduct(product) {
-      if (['vip', 'diamond_vip'].includes(product.type) && this.me.data.rank >= product.reward) return false
+      if (product.category === 'membership' && this.me.data.rank >= product.reward) return false
       return true
     },
     getType(typeId) {
-      return this.types[typeId] || 'Unknown'
+      return this.types[typeId] || 'Unknown Product'
     },
     async purchaseItem (itemId) {
       this.loading = true

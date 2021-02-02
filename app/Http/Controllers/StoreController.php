@@ -18,7 +18,9 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         return Inertia::render('store', [
-            'products' => new ProductCollection(Product::orderBy('price', 'ASC')->get()),
+            'recommended' => new ProductCollection(Product::orderBy('category')->where('recommended', true)->get()),
+            'products' => (new ProductCollection(Product::orderBy('category')->get()))
+                ->groupBy('category'),
         ]);
     }
 }

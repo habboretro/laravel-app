@@ -16,5 +16,7 @@ class Product extends Model
      */
     protected $fillable = [
         'price', 'type', 'reward',
+        'description', 'previous_price', 'previous_reward',
+        'recommended', 'category',
     ];
 }
