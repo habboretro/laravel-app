@@ -58,6 +58,7 @@ export default {
       if (this.box.currency_type === 'balance') return `£${this.box.price}`
       if (this.box.currency_type === 'credits') return `${Math.round(this.box.price)} Credits`
       if (this.box.currency_type === 'diamonds') return `${Math.round(this.box.price)} Diamonds`
+      if (this.box.currency_type === 'tokens') return `${Math.round(this.box.price)} Tokens`
       return 'Free'
     }
   },
