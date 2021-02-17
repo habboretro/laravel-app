@@ -23,26 +23,31 @@ class PurchaseProductController extends Controller
         }
 
         if ($product->type === '0') {
-            $rcon->giveDuckets($request->user(), $product->reward);
-	    $rcon->alertUser($request->user(), sprintf('%s duckets have been added to your account.', $product->reward));
+            // $rcon->giveDuckets($request->user(), $product->reward);
+	        // $rcon->alertUser($request->user(), sprintf('%s duckets have been added to your account.', $product->reward));
         }
 
         if (in_array($product->type, ['vip', 'diamond_vip'])) {
-            $request->user()->update(['rank' => $product->reward]);
-            $rcon->setRank($request->user(), Permission::find($product->reward));
+            // $request->user()->update(['rank' => $product->reward]);
+            // $rcon->setRank($request->user(), Permission::find($product->reward));
         }
 
         if ($product->type === '5') {
-            $rcon->giveDiamonds($request->user(), $product->reward);
-            $rcon->alertUser($request->user(), sprintf('%s diamonds have been added to your account.', $product->reward));
+            // $rcon->giveDiamonds($request->user(), $product->reward);
+            // $rcon->alertUser($request->user(), sprintf('%s diamonds have been added to your account.', $product->reward));
         }
 
-	if ($product->type === '4') {
-	   $rcon->givePoints($request->user(), 4, $product->reward);
-            $rcon->alertUser($request->user(), sprintf('%s tokens have been added to your account.', $product->reward));
-	}
+        if ($product->type === '4') {
+            // $rcon->givePoints($request->user(), 4, $product->reward);
+            // $rcon->alertUser($request->user(), sprintf('%s tokens have been added to your account.', $product->reward));
+        }
 
-        $request->user()->update(['balance' => $request->user()->balance - $product->price]);
+        $previousBalance = $request->user()->balance;
+        $request->user()->update(['balance' => $previousBalance - $product->price]);
+        $request->user()->logs()->create([
+            'type' => 'product_purchase',
+            'data' => ['previous_balance' => $previousBalance, 'product' => $product->toArray()],
+        ]);
 
         return Redirect::route('store')->with('success', 'You purchase was successful.');
     }

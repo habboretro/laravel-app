@@ -74,6 +74,10 @@ class CreateNewUser implements CreatesNewUsers
                 $rcon = new RconService;
                 $rcon->giveDiamonds($referralUser, config('habbo.default.referral_diamonds'));
                 $rcon->alertUser($referralUser, sprintf('%s has registered using your referral link, here is %s diamonds!', $user->username, config('habbo.default.referral_diamonds')));
+                $referralUser->logs()->create([
+                    'type' => 'referral',
+                    'data' => ['user' => $user->toArray()],
+                ]);
             }
         }
 

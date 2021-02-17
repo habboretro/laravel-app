@@ -63,11 +63,19 @@ class PaymentController extends Controller
                 $rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
                 $rcon->giveDiamonds($request->user(), $prize->prize, sprintf('Well Done! Here is your %s', $prize->name));
             break;
-	    case 'tokens':
-	    	$rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
-	   	$rcon->givePoints($request->user(), 4, $prize->prize);
-	     break;
+            case 'tokens':
+                $rcon->alertUser($request->user(), sprintf('Well Done! You just won %s.', $prize->name));
+                $rcon->givePoints($request->user(), 4, $prize->prize);
+            break;
         }
+
+        $request->user()->logs()->create([
+            'type' => 'box_purchase',
+            'data' => [
+                'box' => $box->toArray(),
+                'prize' => $prize->toArray(),
+            ],
+        ]);
 
         return response()->json(new PrizeResource($prize));
     }

@@ -45,7 +45,12 @@ class VerifyController extends Controller
 
         if ($result->getState() == 'approved') {
             $amount = (int) $result->getTransactions()[0]->amount->total;
-            $request->user()->update(['balance' => $request->user()->balance + $amount]);
+            $previousBalance = $request->user()->balance;
+            $request->user()->update(['balance' => $previousBalance + $amount]);
+            $request->user()->logs()->create([
+                'type' => 'topup',
+                'data' => ['amount' => $amount, 'previous_balance' => $previousBalance, 'new_balance' => $request->user()->balance],
+            ]);
             return Redirect::route('store')->with(['success' => 'Your account balance has been updated.']);
         }
 

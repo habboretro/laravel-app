@@ -107,6 +107,16 @@ class User extends Authenticatable
     }
 
     /**
+     * The user logs.
+     *
+     * @var \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    /**
      * Retrieve the email for password reset.
      *
      * @return string
