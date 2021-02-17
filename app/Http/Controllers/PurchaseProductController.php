@@ -24,6 +24,7 @@ class PurchaseProductController extends Controller
 
         if ($product->type === '0') {
             $rcon->giveDuckets($request->user(), $product->reward);
+	    $rcon->alertUser($request->user(), sprintf('%s duckets have been added to your account.', $product->reward));
         }
 
         if (in_array($product->type, ['vip', 'diamond_vip'])) {
@@ -33,10 +34,12 @@ class PurchaseProductController extends Controller
 
         if ($product->type === '5') {
             $rcon->giveDiamonds($request->user(), $product->reward);
+            $rcon->alertUser($request->user(), sprintf('%s diamonds have been added to your account.', $product->reward));
         }
 
 	if ($product->type === '4') {
 	   $rcon->givePoints($request->user(), 4, $product->reward);
+            $rcon->alertUser($request->user(), sprintf('%s tokens have been added to your account.', $product->reward));
 	}
 
         $request->user()->update(['balance' => $request->user()->balance - $product->price]);
