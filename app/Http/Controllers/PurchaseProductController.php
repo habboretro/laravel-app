@@ -23,23 +23,23 @@ class PurchaseProductController extends Controller
         }
 
         if ($product->type === '0') {
-            // $rcon->giveDuckets($request->user(), $product->reward);
-	        // $rcon->alertUser($request->user(), sprintf('%s duckets have been added to your account.', $product->reward));
+            $rcon->giveDuckets($request->user(), $product->reward);
+	        $rcon->alertUser($request->user(), sprintf('%s duckets have been added to your account.', $product->reward));
         }
 
         if (in_array($product->type, ['vip', 'diamond_vip'])) {
-            // $request->user()->update(['rank' => $product->reward]);
-            // $rcon->setRank($request->user(), Permission::find($product->reward));
+            $request->user()->update(['rank' => $product->reward]);
+            $rcon->setRank($request->user(), Permission::find($product->reward));
         }
 
         if ($product->type === '5') {
-            // $rcon->giveDiamonds($request->user(), $product->reward);
-            // $rcon->alertUser($request->user(), sprintf('%s diamonds have been added to your account.', $product->reward));
+            $rcon->giveDiamonds($request->user(), $product->reward);
+            $rcon->alertUser($request->user(), sprintf('%s diamonds have been added to your account.', $product->reward));
         }
 
         if ($product->type === '4') {
-            // $rcon->givePoints($request->user(), 4, $product->reward);
-            // $rcon->alertUser($request->user(), sprintf('%s tokens have been added to your account.', $product->reward));
+            $rcon->givePoints($request->user(), 4, $product->reward);
+            $rcon->alertUser($request->user(), sprintf('%s tokens have been added to your account.', $product->reward));
         }
 
         $previousBalance = $request->user()->balance;

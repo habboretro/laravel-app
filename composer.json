@@ -13,7 +13,7 @@
         "froala/nova-froala-field": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inertiajs/inertia-laravel": "^0.2.4",
+        "inertiajs/inertia-laravel": "^0.3.6",
         "laravel/framework": "^8.20.1",
         "laravel/jetstream": "^1.6",
         "laravel/nova": "*",

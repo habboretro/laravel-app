@@ -31,7 +31,7 @@ export default {
     item: {
       type: Array | Object,
       required: true
-    }
+    },
   },
   filters: {
     humanReadable (date) {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
-use Laravel\Fortify\Contracts\LoginViewResponse;
+use App\Http\Resources\NewsCollection;
 
 class IndexController extends Controller
 {
@@ -15,8 +16,10 @@ class IndexController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function __invoke(Request $request): LoginViewResponse
+    public function __invoke(Request $request): Response
     {
-        return app(LoginViewResponse::class);
+        return Inertia::render('index', [
+            'articles' => new NewsCollection(News::with('user')->latest()->limit(6)->get()),
+        ]);
     }
 }

@@ -4,7 +4,7 @@
       <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4 md:w-1/2">
           <jet-card class="flex items-center h-32 p-6 mb-4 overflow-hidden bg-gray-600 bg-cover bg-bottom bg-no-repeat" style="background-image: url('/images/user-bg.png')">
-            <img src="https://pabbo-hotel.com/habbo-imaging/avatarimage?direction=2&head_direction=2" :alt="me.data.username" class="self-start flex-shrink-0 -mt-10 h-48 w-auto drop-shadow mr-4" />
+            <img src="/habbo-imaging/avatarimage?direction=2&head_direction=2" :alt="me.data.username" class="self-start flex-shrink-0 -mt-10 h-48 w-auto drop-shadow mr-4" />
             <div class="hidden relative flex-1 text-white py-2 px-4 md:block">
               <div class="absolute left-0 top-0 w-full h-full bg-gray-800 opacity-50 rounded-lg" />
               <p class="relative text-3xl mb-1">{{ me.data.username }}</p>
