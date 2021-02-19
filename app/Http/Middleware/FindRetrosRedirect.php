@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Services\FindRetrosService;
 use Closure;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class FindRetrosRedirect
@@ -18,7 +19,12 @@ class FindRetrosRedirect
     public function handle(Request $request, Closure $next)
     {
         $findRetrosService = new FindRetrosService;
-        if (!$findRetrosService->checkHasVoted()) return redirect($findRetrosService->getRedirectUri());
+
+        if (!$findRetrosService->checkHasVoted()) {
+            if ($request->isJson()) return Inertia::location($findRetrosService->getRedirectUri());
+            return redirect($findRetrosService->getRedirectUri());
+        }
+
         return $next($request);
     }
 }
