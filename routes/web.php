@@ -53,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->name('banned');
 
     Route::get('/me', Controllers\MeController::class)
-        ->middleware(['banned', 'findretros.redirect'])
+        ->middleware(['banned'])
         ->name('me');
 
     Route::get('/game', Controllers\GameController::class)
