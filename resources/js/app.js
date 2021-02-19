@@ -1,3 +1,8 @@
+import 'proxy-polyfill/proxy.min.js'
+import 'core-js/stable'
+import 'whatwg-fetch'
+import 'first-input-delay'
+
 import Vue from 'vue'
 import axios from 'axios'
 import VueMeta from 'vue-meta'

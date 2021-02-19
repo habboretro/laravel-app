@@ -32,6 +32,10 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
-    "vue-fortune-wheel": "^1.0.3"
+    "core-js": "^3.9.0",
+    "first-input-delay": "^0.1.3",
+    "proxy-polyfill": "^0.3.2",
+    "vue-fortune-wheel": "^1.0.3",
+    "whatwg-fetch": "^3.6.1"
   }
 }
